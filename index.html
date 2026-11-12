@@ -538,6 +538,24 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
  .hero-saving{font-size:12px;margin-top:8px}.hero-saving strong{font-size:15px}.hero-msrp{font-size:11px;margin-top:8px}.hero-price-label{font-size:12px;margin-top:8px}
 }
 @media(max-width:360px){.card .now .v{font-size:40px}.card .now .y{font-size:17px}.card .now .tax{font-size:10px}.card.feat .now .v{font-size:49px}.hero-caption .hero-amount b{font-size:49px}.hero-caption .hero-amount small{font-size:10px}}
+
+/* One primary action at the price; keep browsing as a quieter option. */
+.hero-buy{max-width:330px;margin-top:12px;min-height:48px}
+.hero-buy .btn-add{min-height:48px;font-size:14px;min-width:0;padding:14px 20px;flex:1}
+.estimate-note{font-family:var(--jp);font-size:11px;color:#626966;line-height:1.6;margin:7px 0 0}
+.hero-compare{display:inline-flex;align-items:center;gap:12px;min-height:44px;margin-top:4px;font-family:var(--jp);font-size:12px;font-weight:500;color:#17618a;text-decoration:underline;text-underline-offset:4px}
+.hero-compare:hover{color:#b54312}
+.hero-compare:focus-visible{outline:2px solid #17618a;outline-offset:3px}
+.hdr-cta,.bar .btn{min-height:44px}
+.card .ctrl .btn-add{min-height:48px}
+.hero-buy .in-list{color:#2b8a3e}
+.hero-buy .link-btn{color:#626966}
+@media(max-width:600px){
+ .hero-buy{max-width:none;margin-top:12px}
+ .hero-buy .btn-add{min-height:48px;font-size:14px}
+ .hero-compare{font-size:12px;min-height:44px}
+ .hero .hero-grid{padding-top:24px}
+}
 </style>
 </head>
 <body>
@@ -566,7 +584,7 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
           <h1>年末売り尽くし<br>キャンペーン</h1>
           <div class="off" aria-label="最大50%OFF"><span class="pre">最大</span><span class="num">50</span><span class="unit">%<small>OFF</small></span></div>
           <p class="hero-lead">人気のAutel製ドローンを、<br class="desktop-br">年末だけの特別価格で。</p>
-          <div class="hero-btns"><a class="btn btn-org" href="#products">対象機種・価格を見る <span aria-hidden="true">↓</span></a></div>
+
         </div>
         <div class="hero-visual" id="heroVisual">
           <img src="assets/out/autel-max-4t-xe-campaign.jpg" alt="Autel EVO MAX 4T XE" width="1280" height="850" fetchpriority="high" onerror="this.parentNode.classList.add('noimg')">
@@ -576,6 +594,9 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
             <div class="hero-price-label">キャンペーン特価</div>
             <div class="hero-amount"><b>700,000</b><span>円</span><small>（税抜）</small></div>
             <div class="hero-saving"><strong>50%OFF</strong><span>700,000円おトク</span></div>
+            <div class="ctrl hero-buy" id="heroBuyCtrl" data-ctrl="4txe"></div>
+            <p class="estimate-note">追加だけでは注文は確定しません。</p>
+            <a class="hero-compare" href="#products">他の対象機種・価格を見る <span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </div>
@@ -866,8 +887,9 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
   /* ---- 見積リスト・バー ---- */
   function renderCart() {
     PRODUCTS.forEach(function (p) {
-      var el = document.querySelector('[data-ctrl="' + p.id + '"]');
-      if (el) el.innerHTML = ctrlHTML(p);
+      Array.prototype.forEach.call(document.querySelectorAll('[data-ctrl="' + p.id + '"]'), function (el) {
+        el.innerHTML = ctrlHTML(p);
+      });
     });
     var c = calc();
     var box = $('qlistBox');
