@@ -556,6 +556,24 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
  .hero-compare{font-size:12px;min-height:44px}
  .hero .hero-grid{padding-top:24px}
 }
+/* Keep the full campaign dates in the opening viewport. */
+.campaign-kicker{border-bottom:0;padding-bottom:7px}
+.campaign-dates{display:flex;align-items:baseline;gap:16px;padding:0 0 17px;border-bottom:1px solid #d7d9d3;line-height:1.4}
+.campaign-dates time{display:inline-flex;align-items:baseline;gap:2px;white-space:nowrap}
+.campaign-dates strong{font-size:25px;font-weight:700;letter-spacing:-.5px;color:#303833}
+.campaign-dates small{font-size:13px;color:#4f5752}
+.campaign-dates .date-end strong{color:#b54312;font-size:31px}
+.date-separator{color:#626966;font-size:18px}
+.date-stock{font-size:11px;color:#b54312;margin-left:auto}
+.hero .hero-grid{padding-top:24px}
+@media(max-width:820px){.date-stock{display:none}.campaign-dates{gap:12px}.campaign-dates strong{font-size:22px}.campaign-dates .date-end strong{font-size:27px}}
+@media(max-width:600px){
+ .campaign-kicker{padding:14px 0 7px;font-size:10px}
+ .campaign-dates{padding-bottom:13px;gap:9px}
+ .campaign-dates strong{font-size:20px}.campaign-dates .date-end strong{font-size:24px}.campaign-dates small{font-size:11px}
+ .date-separator{font-size:15px}.hero .hero-grid{padding-top:12px;padding-bottom:18px}
+}
+@media(max-width:360px){.campaign-dates{gap:7px}.campaign-dates strong{font-size:18px}.campaign-dates .date-end strong{font-size:22px}.campaign-dates small{font-size:10px}}
 </style>
 </head>
 <body>
@@ -578,7 +596,13 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
 
   <section class="hero" id="top">
     <div class="wrap">
-      <div class="campaign-kicker"><span>Autel Robotics</span><span>2026 年末キャンペーン</span></div>
+      <div class="campaign-kicker"><span>Autel Robotics</span><span>キャンペーン期間・2026年</span></div>
+      <div class="campaign-dates" aria-label="キャンペーン期間：2026年11月9日（月）から12月25日（金）まで">
+        <time datetime="2026-11-09"><strong>11月9日</strong><small>（月）</small></time>
+        <span class="date-separator" aria-hidden="true">〜</span>
+        <time datetime="2026-12-25" class="date-end"><strong>12月25日</strong><small>（金）まで</small></time>
+        <span class="date-stock">台数限定・なくなり次第終了</span>
+      </div>
       <div class="hero-grid">
         <div class="hero-copy">
           <h1>年末売り尽くし<br>キャンペーン</h1>
@@ -600,7 +624,6 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
           </div>
         </div>
       </div>
-      <div class="campaign-period"><p><span>キャンペーン期間</span><strong>2026年11月9日（月）〜12月25日（金）</strong></p><p>台数限定・なくなり次第終了</p></div>
     </div>
   </section>
 
@@ -747,7 +770,7 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
   'use strict';
 
   /* ===== 設定（ここを変えれば反映されます） ===== */
-  var CAMPAIGN_END = new Date('2026-12-25T23:59:59+09:00');
+  var CAMPAIGN_END = new Date('2026-12-26T00:00:00+09:00');
   var VALID_UNTIL = '2026年12月25日';
   var MAX_QTY = 20;
   var MAIL_TO = 'info@skylinkjapan.com';
@@ -795,7 +818,7 @@ h2.sec{font-size:27px;line-height:1.5;letter-spacing:0;font-weight:700;margin:0}
   /* ============================================== */
 
   var FIELDS = ['f_company', 'f_dept', 'f_person', 'f_email', 'f_tel', 'f_subject', 'f_note'];
-  var ended = Date.now() > CAMPAIGN_END.getTime();
+  var ended = Date.now() >= CAMPAIGN_END.getTime();
   var cart = {};
   var lastQuote = null;
   var baseTitle = document.title;
