@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="format-detection" content="telephone=no">
+<title>PIX4D 年末キャンペーン｜見積書の作成・お問い合わせ｜SkyLink Japan</title>
+<!--
+  PIX4D 年末キャンペーン 特設ページ（campaign.skylinkjapan.com/pix4d/）2026-11-13
+  ・内容：キャンペーン概要／5年間の支払い比較／見積書の作成・お問い合わせフォーム／よくあるご質問
+  ・フォームを送信すると
+      1) Google Apps Script（Autel特設サイトと同じURL）経由で info@skylinkjapan.com に
+         「【PIX4D年末CP1｜…】」「【PIX4D年末CP2｜…】」の件名で通知（スプレッドシートにも記録）
+      2) お客様の画面に、参考見積書＋ご検討資料（A4・PDF保存／印刷可）を表示
+    送信に失敗しても見積書は表示でき、同じ内容を入れたメールを作れるボタンが出ます
+  ・?c=1 / ?c=2 / ?c=both / ?c=unsure を付けると、キャンペーンが選ばれた状態でフォームから開きます
+  ・価格・期限・会社情報は <script> 冒頭の設定欄で変更できます（Apps Script側の金額も合わせること）
+-->
+<style>
+:root{
+  --navy:#2e3a45;--ink:#0b1f3a;--tile:#132c50;--blue:#286aa6;--blue2:#4da3f0;--teal:#007e9b;--teal2:#2ec4d6;
+  --cta:#1de15f;--cta-ink:#0b1f3a;--deal:#ffe14d;--deal-ink:#d0021b;--red:#d7263d;--sub:#5b6670;--mut:#8a97a3;--line:#dde3e8;--bg:#f2f4f6;--lb:#e9f0f8;--lt:#e6f2f5;--pink:#fce8ea;
+  --jp:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",YuGothic,Meiryo,sans-serif;
+  --en:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font-family:var(--jp);color:var(--navy);background:#fff;line-height:1.8;-webkit-text-size-adjust:100%}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.en{font-family:var(--en)}
+.req{display:inline-block;font-size:11px;line-height:1;padding:3px 6px;margin-left:6px;background:var(--red);color:#fff;border-radius:2px;vertical-align:2px;font-weight:700}
+.opt{display:inline-block;font-size:11px;line-height:1;padding:3px 6px;margin-left:6px;background:#e3e7eb;color:var(--sub);border-radius:2px;vertical-align:2px}
+.hidden{display:none !important}
+.eyebrow{font-family:var(--en);font-size:11px;letter-spacing:.3em;font-weight:700;color:var(--blue)}
+h2.sec{font-size:24px;line-height:1.4;margin:4px 0 0}
+.sec-lead{font-size:14px;color:var(--sub);margin:6px 0 0}
+section{padding:44px 0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:16px;border:0;border-radius:30px;padding:16px 30px;cursor:pointer;text-decoration:none;line-height:1.3;background:var(--cta);color:var(--cta-ink);box-shadow:none}
+.btn:hover{background:#4be87f}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn-sub{background:#fff;color:var(--navy);border:1px solid #b9c3cd;box-shadow:none;font-size:14px;padding:12px 18px;border-radius:30px}
+.btn-sub:hover{background:#f6f8fa}
+.btn-dark{background:transparent;color:#fff;border:1px solid #5b7290;box-shadow:none;font-size:14px;padding:12px 18px;border-radius:30px}
+.btn-dark:hover{background:rgba(255,255,255,.06)}
+
+/* header */
+.hdr{background:#fff;border-top:4px solid var(--blue);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.hdr-l{display:flex;align-items:center;gap:14px}
+.hdr-l img.logo{height:34px;width:auto}
+.hdr-l img.badge{height:30px;width:auto}
+.hdr-r{display:flex;align-items:center;gap:16px}
+.hdr-nav{font-size:13px;color:var(--navy);text-decoration:none}
+.hdr-nav:hover{text-decoration:underline}
+.hdr-tel{font-family:var(--en);font-weight:700;font-size:18px;color:var(--navy);text-decoration:none;white-space:nowrap}
+.hdr-tel small{font-family:var(--jp);font-size:11px;font-weight:400;color:var(--sub);margin-left:6px}
+@media(max-width:700px){.hdr-l img.badge,.hdr-nav,.hdr-tel small{display:none}.hdr-tel{font-size:16px}}
+
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:40px 0 38px}
+.kicker{font-family:var(--en);font-size:11px;letter-spacing:.35em;font-weight:700;color:#6fb1ec}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:73px;height:52px;border-radius:5px}
+.brand b{display:block;font-size:19px;line-height:1.3;color:#fff}
+.brand span{display:block;font-family:var(--en);font-size:10px;letter-spacing:.2em;font-weight:700;color:#6fb1ec;margin-top:4px}
+.hero .who{margin-top:18px;font-size:14px;font-weight:700;color:#b8c6d9}
+.hero h1{font-size:34px;line-height:1.38;margin:6px 0 0;letter-spacing:.03em}
+.hero .diff{margin:10px 0 0;color:#d5deea;font-size:15px}
+.hero .diff{font-weight:700;color:#fff}
+.hero .diff b{font-family:var(--en);font-size:32px;color:var(--deal)}
+.hero .diff small{display:block;font-size:11px;font-weight:400;color:#8fa3bc}
+.hero .lead{margin:14px 0 0;font-size:14px;color:#d5deea;max-width:620px}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.dl span{font-size:13px;padding:6px 12px;background:#13294a;border:1px solid #24406a}
+.dl b{font-weight:700;margin-left:6px}
+.dl .c1{border-left:4px solid var(--blue2)}
+.dl .c2{border-left:4px solid var(--teal2)}
+.hero .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+@media(max-width:640px){.hero h1{font-size:26px}.hero .acts .btn{width:100%}}
+@media(max-width:640px){h2.sec{font-size:20px}}
+
+/* cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.card{border:1px solid #c9d3dc;background:#fff;display:flex;flex-direction:column}
+.card-h{color:#fff;padding:12px 16px;font-weight:700;font-size:15px;line-height:1.45;display:flex;align-items:center;gap:10px}
+.card-h .n{flex:none;width:26px;height:26px;border-radius:50%;background:#fff;font-family:var(--en);font-size:14px;display:flex;align-items:center;justify-content:center}
+.card.c1 .card-h{background:var(--blue)}.card.c1 .card-h .n{color:var(--blue)}
+.card.c2 .card-h{background:var(--teal)}.card.c2 .card-h .n{color:var(--teal)}
+.card-b{padding:14px 16px 16px;font-size:13px;flex:1;display:flex;flex-direction:column}
+.card-b .what{font-weight:700;font-size:16px}
+.card-b .what .hl{color:var(--deal-ink)}
+.card-b .was{color:var(--sub);font-size:12px;margin-top:6px}
+.card-b .was s{font-family:var(--en)}
+.card-b .price{color:var(--red);font-weight:700;line-height:1.2}
+.card-b .price b{font-family:var(--en);font-size:30px;font-weight:900;letter-spacing:-.5px}
+.card-b ul{margin:10px 0 0;padding:0;list-style:none;flex:1}
+.save{background:#fff8d6;border-left:4px solid #ffd000;color:var(--cta-ink);font-weight:700;font-size:14px;padding:5px 10px;margin-top:8px}
+.save b{font-family:var(--en);font-size:19px;color:var(--deal-ink)}
+.save small{font-size:11px;font-weight:400}
+.eol{margin-top:8px;background:#fff5f6;border:1px solid #f3b7bf;color:var(--navy);font-size:12.5px;line-height:1.6;padding:7px 10px;font-weight:700}
+.eol b{color:var(--red)}
+.card-b li{padding-left:16px;position:relative;font-size:12.5px;line-height:1.7}
+.card-b li:before{content:"✓";position:absolute;left:0;font-weight:700}
+.card.c1 li:before{color:var(--blue)}.card.c2 li:before{color:var(--teal)}
+.card-b .due{margin-top:12px;padding:7px 10px;font-size:12px}
+.card.c1 .due{background:var(--lb)}.card.c2 .due{background:var(--lt)}
+.card-b .pick{margin-top:12px;width:100%;font-size:15px;padding:13px 14px}
+.card.closed{opacity:.55}.card.closed .pick{display:none}
+.cards-note{font-size:12px;color:var(--sub);margin:10px 0 0}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+
+/* compare */
+.cmp{background:var(--bg)}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.cmp-box{background:#fff;border:1px solid var(--line);padding:20px}
+.cmp-box h3{margin:0;font-size:15px;line-height:1.5}
+.cmp-box h3 small{display:block;font-size:12px;color:var(--sub);font-weight:400}
+.cmp-box.c1{border-top:4px solid var(--blue)}.cmp-box.c2{border-top:4px solid var(--teal)}
+.bar-row{margin-top:14px}
+.bar-row .lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--sub)}
+.bar-row .lbl b{font-family:var(--en);font-size:15px;color:var(--navy)}
+.bar{height:16px;background:#c9d3dc;margin-top:4px}
+.bar.hot{background:var(--blue)}
+.c2 .bar.hot{background:var(--teal)}
+.cmp-diff{margin-top:14px;background:var(--pink);padding:10px 12px;font-size:13px;font-weight:700}
+.cmp-diff b{font-family:var(--en);font-size:22px;color:var(--red)}
+.cmp-box table{width:100%;border-collapse:collapse;font-size:12px;margin-top:14px}
+.cmp-box th,.cmp-box td{border-bottom:1px solid var(--line);padding:6px 4px;text-align:right;font-variant-numeric:tabular-nums}
+.cmp-box th:first-child,.cmp-box td:first-child{text-align:left}
+.cmp-box th{color:var(--sub);font-weight:400}
+.cmp-box td.hot{color:var(--blue);font-weight:700}
+.cmp-note{font-size:12px;color:var(--sub);margin-top:10px}
+@media(max-width:700px){.cmp-grid{grid-template-columns:1fr}}
+
+/* form */
+.form-sec{background:#fff}
+.flow{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;padding:0;list-style:none;counter-reset:f}
+.flow li{counter-increment:f;font-size:13px;background:var(--bg);padding:6px 12px;border-radius:20px}
+.flow li:before{content:counter(f);font-family:var(--en);font-weight:700;margin-right:6px;color:var(--blue)}
+form{margin-top:16px}
+.blk{background:#fff;border:1px solid var(--line);padding:20px 20px 8px;margin-top:14px}
+.blk-t{font-size:15px;font-weight:700;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.blk-t .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--en);font-size:13px;display:flex;align-items:center;justify-content:center}
+.blk.c1{border-top:4px solid var(--blue)}.blk.c2{border-top:4px solid var(--teal)}
+.blk-note{font-size:12px;color:var(--sub);margin:-6px 0 12px}
+.fld{margin-bottom:16px}
+.fld>label,.fld>.lab{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.fld .hint{font-size:12px;color:var(--sub);font-weight:400;margin-top:4px}
+input[type=text],input[type=email],input[type=tel],select,textarea{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid #b9c3cd;border-radius:3px;background:#fff;color:var(--navy)}
+textarea{min-height:100px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:3px solid #9cc3ea;outline-offset:0;border-color:var(--blue)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+.choices label{display:flex;align-items:center;gap:8px;border:1px solid #b9c3cd;border-radius:3px;padding:9px 12px;font-size:14px;cursor:pointer;background:#fff;line-height:1.4}
+.choices input{width:18px;height:18px;margin:0;flex:none;accent-color:var(--blue)}
+.choices label:has(input:checked){border-color:var(--blue);background:var(--lb);font-weight:700}
+.choices label.is-disabled{opacity:.45;cursor:not-allowed}
+.camp{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.camp label{display:flex;gap:10px;align-items:flex-start;border:2px solid #c9d3dc;border-radius:4px;padding:12px;cursor:pointer;background:#fff;line-height:1.5}
+.camp input{width:18px;height:18px;margin:2px 0 0;flex:none}
+.camp b{display:block;font-size:14px}
+.camp small{display:block;font-size:12px;color:var(--sub)}
+.camp label[data-c="1"]:has(input:checked){border-color:var(--blue);background:var(--lb)}
+.camp label[data-c="2"]:has(input:checked){border-color:var(--teal);background:var(--lt)}
+.camp label[data-c="both"]:has(input:checked),.camp label[data-c="unsure"]:has(input:checked){border-color:var(--navy);background:#eef1f4}
+.camp label.is-disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:640px){.camp{grid-template-columns:1fr}}
+.warn{background:var(--pink);font-size:12.5px;padding:10px 12px;margin:-4px 0 16px;line-height:1.7}
+.warn b{color:var(--red)}
+.info{background:var(--lt);font-size:12.5px;padding:10px 12px;margin:-4px 0 16px;line-height:1.7}
+.err{display:none;color:var(--red);font-size:12px;font-weight:700;margin-top:4px}
+.fld.bad .err{display:block}
+.fld.bad input,.fld.bad select{border-color:var(--red)}
+.fld.bad .choices label,.fld.bad .camp label{border-color:var(--red)}
+.est{background:var(--ink);color:#fff;padding:14px 18px;margin-top:14px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.est .l{font-size:13px;color:#b8c6d9}
+.est .v{font-family:var(--en);font-size:26px;font-weight:900}
+.est .v small{font-family:var(--jp);font-size:12px;font-weight:400;color:#b8c6d9;margin-left:4px}
+.est .s{width:100%;font-size:12px;color:#b8c6d9}
+
+/* photos */
+.ph-drop{border:2px dashed #b9c3cd;border-radius:4px;padding:14px;text-align:center;background:#fafbfc;font-size:13px;color:var(--sub)}
+.ph-drop label{display:inline-block;margin-top:6px;background:var(--teal);color:#fff;font-weight:700;padding:8px 14px;border-radius:3px;cursor:pointer}
+.ph-drop input{position:absolute;width:1px;height:1px;opacity:0}
+.ph-list{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.ph-item{position:relative;width:96px}
+.ph-item img{width:96px;height:72px;object-fit:cover;border:1px solid var(--line)}
+.ph-item button{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:0;background:var(--navy);color:#fff;font-size:14px;line-height:24px;cursor:pointer}
+.ph-item span{display:block;font-size:10px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.consent{font-size:13px;display:flex;gap:8px;align-items:flex-start}
+.consent input{width:18px;height:18px;margin:3px 0 0;flex:none}
+.submit-row{text-align:center;margin-top:22px}
+.submit-row .btn{min-width:300px}
+@media(max-width:640px){.submit-row .btn{width:100%;min-width:0}}
+.submit-note{font-size:12px;color:var(--sub);margin-top:10px}
+.sum-bad{display:none;margin-top:12px;color:var(--red);font-weight:700;font-size:13px}
+.sum-bad.on{display:block}
+
+/* result */
+.result{display:none;background:#fff;border:1px solid var(--line);border-top:4px solid var(--blue);padding:28px 22px;margin-top:18px}
+.result.on{display:block}
+.result h3{margin:0;font-size:20px}
+.result .no{font-family:var(--en);font-size:22px;font-weight:700;margin-top:8px}
+.result dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13px;margin:16px 0 0;background:var(--bg);padding:14px 16px}
+.result dt{color:var(--sub);white-space:nowrap}
+.result dd{margin:0}
+.result.ng{border-top-color:var(--red)}
+.result .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.result .quote-cta{background:var(--ink);color:#fff;padding:16px 18px;margin-top:16px}
+.result .quote-cta p{margin:0 0 10px;font-size:13px;color:#d5deea}
+
+/* faq */
+.faq{background:var(--bg)}
+.faq details{background:#fff;border:1px solid var(--line);margin-top:10px}
+.faq summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:15px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:before{content:"Q";flex:none;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;font-family:var(--en);font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.faq details[open] summary{border-bottom:1px solid var(--line)}
+.faq .a{padding:12px 16px 14px 50px;font-size:14px}
+.faq .tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:2px;margin-left:6px;vertical-align:2px;font-weight:700}
+.faq .tag.t1{background:var(--lb);color:var(--blue)}.faq .tag.t2{background:var(--lt);color:var(--teal)}
+
+/* footer */
+.ftr{background:var(--ink);color:#b9c6d5;font-size:12px;padding:26px 0;line-height:1.9}
+.ftr b{color:#fff}
+.ftr a{color:#9fc6ec}
+
+/* ===== 見積書ビュー ===== */
+#quoteView{display:none;background:#525a63;min-height:100vh;padding-bottom:40px}
+body.quote-mode #site{display:none}
+body.quote-mode #quoteView{display:block}
+.qv-bar{position:sticky;top:0;z-index:30;background:var(--ink);padding:12px 16px;text-align:center}
+.qv-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.qv-btns .btn{padding:12px 20px;font-size:14px}
+.qv-hint{color:#b8c6d9;font-size:12px;margin-top:8px;line-height:1.6}
+.qv-status{color:#fff;font-size:13px;font-weight:700;margin-top:10px}
+.qv-status b{color:var(--cta);font-family:var(--en)}
+.sheet-wrap{margin:20px auto 0;position:relative;overflow:hidden}
+.sheet{position:absolute;top:0;left:0;width:210mm;height:297mm;padding:11mm 14mm 8mm 14mm;background:#fff;color:#111;
+  font-family:"Noto Sans JP","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  font-size:9.5pt;line-height:1.5;transform-origin:top left;box-shadow:0 12px 40px rgba(0,0,0,.35);overflow:hidden}
+.s-top{text-align:right;font-size:10pt;line-height:2.1}
+.s-title{text-align:center;font-size:22pt;font-weight:700;letter-spacing:.06em;margin:2mm 0 7mm;line-height:1.2}
+.s-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5.5mm}
+.s-left{width:93mm}
+.s-to{font-size:13pt;font-weight:500;text-decoration:underline;text-underline-offset:2.5px;text-decoration-thickness:1px;line-height:1.45;margin-bottom:2.5mm;word-break:break-all}
+.s-attn{font-size:10.5pt;margin:-1mm 0 2.5mm}
+.s-meta{font-size:9.5pt;line-height:1.85}
+.s-lead{margin:3mm 0 7mm;font-size:9.5pt}
+.s-amount{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.6px solid #111;padding:0 0 1.2mm;font-size:12.5pt;font-weight:500}
+.s-right{width:81mm;position:relative}
+.s-logo{width:48mm;height:auto;display:block;margin:0 0 4mm}
+.s-co{font-size:11pt;line-height:1.42;margin-bottom:4mm}
+.s-addr{font-size:9pt;line-height:1.5;margin-bottom:4mm}
+.s-contact{font-size:9pt;line-height:1.5}
+.s-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:9.2pt}
+.s-table th{background:#d9d9d9;font-weight:700;border:1px solid #111;height:9.6mm;text-align:center;padding:0}
+.s-table td{border:1px solid #111;height:8.3mm;padding:0 2.6mm;vertical-align:middle;line-height:1.3}
+.s-table td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.s-table tr.sum td.blank{border:none}
+.s-table tr.sum td{height:8.6mm}
+.s-foot{margin:5mm 0 0;font-size:9.5pt}
+.s-notes{margin-top:3mm;font-size:7.6pt;color:#333;line-height:1.55}
+.s-notes p{margin:0}
+/* ご検討資料 */
+.d-title{font-size:17pt;font-weight:700;margin:1mm 0 1mm;line-height:1.3}
+.d-sub{font-size:9.5pt;color:#333;margin-bottom:5mm}
+.d-band{font-size:11pt;font-weight:700;color:#fff;padding:2mm 3mm;margin:0 0 3mm}
+.d-band.c1{background:#286aa6}.d-band.c2{background:#007e9b}
+.d-key{display:flex;gap:4mm;margin:0 0 4mm}
+.d-key div{flex:1;border:1px solid #bbb;padding:2.5mm 3mm}
+.d-key small{display:block;font-size:8pt;color:#555}
+.d-key b{font-size:14pt;font-variant-numeric:tabular-nums}
+.d-key .hot b{color:#c8102e}
+.d-table{width:100%;border-collapse:collapse;font-size:9pt;margin:0 0 4mm}
+.d-table th,.d-table td{border:1px solid #999;padding:1.6mm 2.4mm;text-align:right;font-variant-numeric:tabular-nums}
+.d-table th{background:#eee;font-weight:700;text-align:center}
+.d-table td:first-child{text-align:left}
+.d-table tr.tot td{font-weight:700;background:#fafafa}
+.d-h{font-size:10pt;font-weight:700;margin:3mm 0 1.5mm;border-left:3px solid #111;padding-left:2mm}
+.d-list{margin:0;padding-left:4.5mm;font-size:8.8pt;line-height:1.7}
+.d-time{width:100%;border-collapse:collapse;font-size:8.8pt;margin:0 0 3mm}
+.d-time td{border-bottom:1px solid #ccc;padding:1.4mm 2mm}
+.d-time td:first-child{white-space:nowrap;font-weight:700;width:34mm}
+.d-foot{position:absolute;left:14mm;right:14mm;bottom:9mm;font-size:8pt;color:#444;border-top:1px solid #999;padding-top:2mm;display:flex;justify-content:space-between}
+
+@page{size:A4;margin:0}
+@media print{
+  body.quote-mode{background:#fff !important;margin:0}
+  body.quote-mode #site,body.quote-mode .qv-bar{display:none !important}
+  body.quote-mode #quoteView{background:#fff;min-height:0;padding:0}
+  body.quote-mode .sheet-wrap{margin:0 !important;width:210mm !important;height:296.5mm !important;page-break-after:always;break-after:page}
+  body.quote-mode .sheet-wrap:last-child{page-break-after:auto;break-after:auto}
+  body.quote-mode .sheet{transform:none !important;box-shadow:none !important;height:296.5mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div id="site">
+
+<header class="hdr">
+  <div class="wrap">
+    <div class="hdr-l">
+      <img class="logo" src="../assets/out/skylink-logo-blue.png" alt="SkyLink Japan" width="75" height="34">
+      <img class="badge" src="../assets/out/pix4d-premier-reseller.png" alt="PIX4D Premier Reseller" width="86" height="30">
+    </div>
+    <div class="hdr-r">
+      <a class="hdr-nav" href="#compare">支払い比較</a>
+      <a class="hdr-nav" href="#form">見積書の作成</a>
+      <a class="hdr-nav" href="#faq">よくあるご質問</a>
+      <a class="hdr-tel" href="tel:0757082369">075-708-2369<small>平日 9:00〜17:00</small></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="brand"><img src="../assets/out/pix4d-logo-chip.png" alt="PIX4D" width="73" height="52"><div><b>年末キャンペーン 2026</b><span>PIX4D PREMIER RESELLER</span></div></div>
+    <div class="who">PIX4D製品をお使いの皆さまへ／年内限定のご案内</div>
+    <h1>入れ替えるなら、<br>今がいちばん安い。</h1>
+    <p class="diff">通常価格より、最大 <b>212万円</b> おトク！<small>Matic Pro 1本を5年間、期限内に更新した場合の通常価格との差</small></p>
+    <p class="lead">対象の方は、このページで<strong>参考見積書（PDF）をその場で作成</strong>できます。5年間の支払い比較をまとめた「ご検討資料」も付くので、社内のご検討にそのままお使いいただけます。</p>
+    <div class="dl">
+      <span class="c1">キャンペーン1<b>12月31日（木）までの見積依頼</b></span>
+      <span class="c2">キャンペーン2<b>12月18日（金）まで・在庫限り</b></span>
+    </div>
+    <div class="acts">
+      <a class="btn" href="#form">1分で見積書を作成する&nbsp;&rarr;</a>
+      <a class="btn btn-dark" href="#compare">5年間の支払い比較を見る</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:32px;padding-bottom:20px">
+  <div class="wrap">
+    <div class="eyebrow">CAMPAIGN</div>
+    <h2 class="sec">お持ちの製品で、選んでください</h2>
+    <div class="cards">
+      <div class="card c1" id="card1">
+        <div class="card-h"><span class="n">1</span>PIX4Dmapper をお持ちの方</div>
+        <div class="card-b">
+          <div class="what">Matic Proへの乗り換えが<span class="hl">半額！</span></div>
+          <div class="was">PIX4Dmatic Pro 1年ライセンス　通常 <s>850,000円</s></div>
+          <div class="price"><b>425,000</b>円／年（税抜）</div>
+          <div class="save">毎年 <b>425,000</b>円 おトク！<small style="white-space:nowrap">（5年で約212万円）</small></div>
+          <div class="eol">&#9888; PIX4Dmapperは<b>2027年1月に販売終了</b>します（2027年12月1日にサポート・更新も終了）</div>
+          <ul>
+            <li>最大5年間、この価格のまま更新（毎年の期限内更新が条件）</li>
+            <li>Mapperは返却不要。そのまま使える</li>
+            <li>買い切り・年額契約、保守切れも対象</li>
+            <li>購入前に30日間の延長トライアル</li>
+          </ul>
+          <div class="due"><b>期限</b>　2026年12月31日（木）までの見積依頼</div>
+          <button type="button" class="btn pick" data-pick="1">1分で見積書を作成する&nbsp;&rarr;</button>
+        </div>
+      </div>
+      <div class="card c2" id="card2">
+        <div class="card-h"><span class="n">2</span>viDoc・GNSS受信機をお持ちの方</div>
+        <div class="card-b">
+          <div class="what">下取りで機器セットが<span class="hl">0円！</span></div>
+          <div class="was">Reach RX2 スキャンキット＋PIX4Dcatch Pro 1年　通常 <s>870,000円</s></div>
+          <div class="price"><b>300,000</b>円（一式・税抜）</div>
+          <div class="save"><b>570,000</b>円分の機器が 0円！<small style="white-space:nowrap">（受信機の下取りで）</small></div>
+          <ul>
+            <li>機器セット57万円分を全額値引き</li>
+            <li>メーカー・型式を問わず下取り（Emlid製品を除く）</li>
+            <li>下取り対象か、写真で事前に確認できます</li>
+            <li>スマートフォン・補正情報サービスは別途</li>
+          </ul>
+          <div class="due"><b>期限</b>　2026年12月18日（金）まで・在庫限り</div>
+          <button type="button" class="btn pick" data-pick="2">1分で見積書を作成する&nbsp;&rarr;</button>
+        </div>
+      </div>
+    </div>
+    <p class="cards-note">価格はすべて税抜です。</p>
+  </div>
+</section>
+
+<section class="cmp" id="compare">
+  <div class="wrap">
+    <div class="eyebrow">COMPARE</div>
+    <h2 class="sec">通常価格と、どれだけ違うか</h2>
+    <p class="sec-lead">1ライセンス・1式あたりの比較です（税抜）。見積書と一緒に、同じ内容の「ご検討資料」をPDFで出せます。</p>
+    <div class="cmp-grid">
+      <div class="cmp-box c1">
+        <h3>キャンペーン1｜Matic Pro 5年間の支払い総額<small>毎年期限内に更新した場合</small></h3>
+        <div class="bar-row"><div class="lbl"><span>通常価格</span><b>4,250,000円</b></div><div class="bar"></div></div>
+        <div class="bar-row"><div class="lbl"><span>キャンペーン価格</span><b>2,125,000円</b></div><div class="bar hot" style="width:50%"></div></div>
+        <div class="cmp-diff">見送ると、5年で <b>2,125,000</b>円 多く支払うことに</div>
+        <table>
+          <tr><th>累計</th><th>通常価格</th><th>キャンペーン</th><th>差額</th></tr>
+          <tr><td>1年目</td><td>850,000</td><td class="hot">425,000</td><td>425,000</td></tr>
+          <tr><td>2年目</td><td>1,700,000</td><td class="hot">850,000</td><td>850,000</td></tr>
+          <tr><td>3年目</td><td>2,550,000</td><td class="hot">1,275,000</td><td>1,275,000</td></tr>
+          <tr><td>4年目</td><td>3,400,000</td><td class="hot">1,700,000</td><td>1,700,000</td></tr>
+          <tr><td>5年目</td><td>4,250,000</td><td class="hot">2,125,000</td><td>2,125,000</td></tr>
+        </table>
+        <p class="cmp-note">複数ライセンスなら差額も本数分です。6年目以降は通常価格（年850,000円）となり、更新を続ける限りその価格が続きます。特別価格は毎年の期限内更新が条件で、途切れると通常価格に戻ります。</p>
+      </div>
+      <div class="cmp-box c2">
+        <h3>キャンペーン2｜RX2スキャンキット＋Catch Pro 1年<small>受信機1台の下取りにつき1式</small></h3>
+        <div class="bar-row"><div class="lbl"><span>通常価格</span><b>870,000円</b></div><div class="bar"></div></div>
+        <div class="bar-row"><div class="lbl"><span>キャンペーン価格</span><b>300,000円</b></div><div class="bar hot" style="width:34.5%"></div></div>
+        <div class="cmp-diff">今なら <b>570,000</b>円 安く入れ替えられる</div>
+        <table>
+          <tr><th>内訳</th><th>通常価格</th><th>キャンペーン</th></tr>
+          <tr><td>機器セット（RX2本体・ハンドル・ケース）</td><td>570,000</td><td class="hot">0</td></tr>
+          <tr><td>PIX4Dcatch Pro 1年</td><td>300,000</td><td class="hot">300,000</td></tr>
+          <tr><td><b>合計</b></td><td><b>870,000</b></td><td class="hot">300,000</td></tr>
+        </table>
+        <p class="cmp-note">2年目以降はPIX4Dcatch Proの年間更新費用がかかります。スマートフォン（LiDAR搭載のiPhone推奨）・固定用ケース・RTK補正情報サービスは別途です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-sec" id="form">
+  <div class="wrap">
+    <div class="eyebrow">QUOTE &amp; CONTACT</div>
+    <h2 class="sec">見積書の作成・お問い合わせ</h2>
+    <p class="sec-lead">入力は1分ほどです。送信すると、<strong>参考見積書とご検討資料（PDF）をその場で表示</strong>します。内容はSkyLink Japanにも届き、対象条件を確認のうえ担当から正式見積をお送りします。</p>
+    <ol class="flow"><li>キャンペーンを選ぶ</li><li>本数・台数を選ぶ</li><li>宛名を入れる</li><li>見積書を保存</li></ol>
+
+    <form id="f" novalidate>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Webサイト<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="blk">
+        <p class="blk-t"><span class="n">1</span>ご相談のキャンペーン<span class="req">必須</span></p>
+        <div class="fld" data-f="campaign">
+          <div class="camp">
+            <label data-c="1"><input type="radio" name="campaign" value="1"><span><b>1｜PIX4Dmapperの乗り換え</b><small>Matic Proが半額</small></span></label>
+            <label data-c="2"><input type="radio" name="campaign" value="2"><span><b>2｜GNSS受信機の下取り</b><small>機器セットが0円</small></span></label>
+            <label data-c="both"><input type="radio" name="campaign" value="both"><span><b>1と2の両方</b><small>Mapperと受信機の両方をお持ちの方</small></span></label>
+            <label data-c="unsure"><input type="radio" name="campaign" value="unsure"><span><b>どちらが対象か相談したい</b><small>お手元の製品を伺ってご案内します（見積書は作成されません）</small></span></label>
+          </div>
+          <div class="err">キャンペーンを選んでください</div>
+        </div>
+        <div class="fld" data-f="purpose">
+          <div class="lab">ご依頼の内容<span class="req">必須</span><span class="hint" style="display:inline;margin-left:6px">複数選べます</span></div>
+          <div class="choices">
+            <label><input type="checkbox" name="purpose" value="見積依頼" checked>正式見積がほしい</label>
+            <label><input type="checkbox" name="purpose" value="対象の確認">対象になるか確認したい</label>
+            <label data-only="1"><input type="checkbox" name="purpose" value="30日トライアル">30日間トライアルを使いたい</label>
+            <label><input type="checkbox" name="purpose" value="電話で説明">電話で説明を聞きたい</label>
+          </div>
+          <div class="err">ご依頼の内容を1つ以上選んでください</div>
+        </div>
+      </div>
+
+      <div class="blk c1 hidden" id="b1">
+        <p class="blk-t"><span class="n" style="background:var(--blue)">2</span>キャンペーン1｜PIX4Dmapperについて</p>
+        <div class="grid2">
+          <div class="fld" data-f="m_count">
+            <label for="m_count">乗り換える本数（Matic Proの本数）<span class="req">必須</span></label>
+            <select id="m_count" name="m_count"><option value="">選んでください</option></select>
+            <div class="hint">お持ちのMapper 1本につき、Matic Pro 1本まで対象です</div>
+            <div class="err">本数を選んでください</div>
+          </div>
+          <div class="fld" data-f="m_type">
+            <div class="lab">Mapperのご契約形態<span class="req">必須</span></div>
+            <div class="choices">
+              <label><input type="radio" name="m_type" value="買い切り">買い切り</label>
+              <label><input type="radio" name="m_type" value="年額契約">年額契約</label>
+              <label><input type="radio" name="m_type" value="分からない">分からない</label>
+            </div>
+            <div class="err">ご契約形態を選んでください</div>
+          </div>
+        </div>
+        <div class="fld" data-f="m_support">
+          <div class="lab">保守（サポート＆アップグレード）の状況<span class="opt">任意</span></div>
+          <div class="choices">
+            <label><input type="radio" name="m_support" value="有効">有効</label>
+            <label><input type="radio" name="m_support" value="切れている">切れている</label>
+            <label><input type="radio" name="m_support" value="分からない">分からない</label>
+          </div>
+          <div class="hint">保守が切れていても対象です</div>
+        </div>
+      </div>
+
+      <div class="blk c2 hidden" id="b2">
+        <p class="blk-t"><span class="n" style="background:var(--teal)" id="b2n">2</span>キャンペーン2｜下取りに出す機器について</p>
+        <div class="fld" data-f="g_kind">
+          <div class="lab">機器の種類<span class="req">必須</span></div>
+          <div class="choices">
+            <label><input type="radio" name="g_kind" value="viDoc">viDoc</label>
+            <label><input type="radio" name="g_kind" value="他社製GNSS受信機">他社製GNSS受信機</label>
+          </div>
+          <div class="err">機器の種類を選んでください</div>
+        </div>
+        <div class="grid2">
+          <div class="fld" data-f="g_model">
+            <label for="g_model">メーカー・型式<span class="req">必須</span></label>
+            <input type="text" id="g_model" name="g_model" maxlength="60" placeholder="例：Trimble R10、viDoc RTK rover">
+            <div class="hint">分からなければ「不明」とご記入ください</div>
+            <div class="err">メーカー・型式をご記入ください</div>
+          </div>
+          <div class="fld" data-f="g_qty">
+            <label for="g_qty">下取りに出す台数（キットの数）<span class="req">必須</span></label>
+            <select id="g_qty" name="g_qty"><option value="">選んでください</option></select>
+            <div class="hint">受信機1台につき、キット1式です</div>
+            <div class="err">台数を選んでください</div>
+          </div>
+        </div>
+        <div class="warn hidden" id="emlidWarn"><b>Emlid製品は下取りの対象外です。</b>他の機器をお持ちでしたら、そちらをご記入ください。</div>
+        <div class="fld hidden" data-f="g_vidoc" id="vidocFld">
+          <div class="lab">viDocの購入時期<span class="req">必須</span></div>
+          <div class="choices">
+            <label><input type="radio" name="g_vidoc" value="2024年9月より前にPix4Dから購入">2024年9月より前にPix4Dから購入</label>
+            <label><input type="radio" name="g_vidoc" value="2024年9月以降に購入">2024年9月以降に購入</label>
+            <label><input type="radio" name="g_vidoc" value="分からない">分からない</label>
+          </div>
+          <div class="err">購入時期を選んでください</div>
+        </div>
+        <div class="info hidden" id="vidocInfo">2024年9月より前にPix4DからviDocをご購入の方は、現在PIX4Dcatchのライセンス費用が免除されています。乗り換えると2年目以降に費用がかかるため、どちらが得か担当が比べてご案内します。</div>
+        <div class="grid2">
+          <div class="fld" data-f="g_iphone">
+            <div class="lab">LiDAR搭載のiPhone<span class="opt">任意</span></div>
+            <div class="choices">
+              <label><input type="radio" name="g_iphone" value="持っている">持っている</label>
+              <label><input type="radio" name="g_iphone" value="持っていない">持っていない</label>
+              <label><input type="radio" name="g_iphone" value="分からない">分からない</label>
+            </div>
+            <div class="hint">スマートフォンはキットに含まれません</div>
+          </div>
+          <div class="fld" data-f="g_rtk">
+            <div class="lab">RTK補正情報サービス（ネットワーク型）<span class="opt">任意</span></div>
+            <div class="choices">
+              <label><input type="radio" name="g_rtk" value="契約している">契約している</label>
+              <label><input type="radio" name="g_rtk" value="契約していない">契約していない</label>
+              <label><input type="radio" name="g_rtk" value="分からない">分からない</label>
+            </div>
+            <div class="hint">ご契約が別途必要です</div>
+          </div>
+        </div>
+        <div class="fld" data-f="photos">
+          <div class="lab">機器の写真<span class="opt">任意・3枚まで</span></div>
+          <div class="ph-drop">
+            本体・型式ラベルが分かる写真があると、下取りの対象か早く確認できます
+            <div><label for="ph">写真を選ぶ</label><input type="file" id="ph" accept="image/*" multiple></div>
+          </div>
+          <div class="ph-list" id="phList"></div>
+          <div class="err" id="phErr"></div>
+        </div>
+      </div>
+
+      <div class="est hidden" id="est">
+        <span class="l">参考見積の合計（税込）</span>
+        <span class="v" id="estV"></span>
+        <span class="s" id="estS"></span>
+      </div>
+
+      <div class="blk">
+        <p class="blk-t"><span class="n" id="bcN">2</span>見積書の宛名・ご連絡先</p>
+        <div class="grid2">
+          <div class="fld" data-f="company">
+            <label for="company">会社名・団体名<span class="req">必須</span></label>
+            <input type="text" id="company" name="company" maxlength="60" autocomplete="organization" placeholder="例：株式会社〇〇測量">
+            <div class="hint">見積書の宛名になります</div>
+            <div class="err">会社名・団体名をご記入ください</div>
+          </div>
+          <div class="fld" data-f="dept">
+            <label for="dept">部署名<span class="opt">任意</span></label>
+            <input type="text" id="dept" name="dept" maxlength="40">
+          </div>
+          <div class="fld" data-f="person">
+            <label for="person">お名前<span class="req">必須</span></label>
+            <input type="text" id="person" name="person" maxlength="30" autocomplete="name">
+            <div class="err">お名前をご記入ください</div>
+          </div>
+          <div class="fld" data-f="pref">
+            <label for="pref">都道府県<span class="opt">任意</span></label>
+            <select id="pref" name="pref"><option value="">選んでください</option></select>
+          </div>
+          <div class="fld" data-f="email">
+            <label for="email">メールアドレス<span class="req">必須</span></label>
+            <input type="email" id="email" name="email" maxlength="80" autocomplete="email" inputmode="email">
+            <div class="err">メールアドレスを正しくご記入ください</div>
+          </div>
+          <div class="fld" data-f="tel">
+            <label for="tel">電話番号<span class="opt" id="telTag">任意</span></label>
+            <input type="tel" id="tel" name="tel" maxlength="20" autocomplete="tel" inputmode="tel">
+            <div class="err">お電話での連絡をご希望の場合は、電話番号をご記入ください</div>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="fld" data-f="contact">
+            <div class="lab">ご希望の連絡方法<span class="opt">任意</span></div>
+            <div class="choices">
+              <label><input type="radio" name="contact" value="メール" checked>メール</label>
+              <label><input type="radio" name="contact" value="電話">電話</label>
+              <label><input type="radio" name="contact" value="どちらでも">どちらでも</label>
+            </div>
+          </div>
+          <div class="fld" data-f="timing">
+            <div class="lab">導入のご希望時期<span class="opt">任意</span></div>
+            <div class="choices">
+              <label><input type="radio" name="timing" value="年内">年内</label>
+              <label><input type="radio" name="timing" value="年度内（3月まで）">年度内</label>
+              <label><input type="radio" name="timing" value="未定">未定</label>
+            </div>
+          </div>
+        </div>
+        <div class="fld" data-f="note">
+          <label for="note">ご質問・ご要望<span class="opt">任意</span></label>
+          <textarea id="note" name="note" maxlength="800" placeholder="例：年度内に検収したい／見積書の宛名を本社にしたい など"></textarea>
+          <div class="hint">見積書には載りません。担当への連絡に使います</div>
+        </div>
+        <div class="fld" data-f="agree">
+          <label class="consent"><input type="checkbox" name="agree" value="1"><span><a href="https://worldlinkandcompany.com/contact-service/" target="_blank" rel="noopener">個人情報の取り扱いについて</a>に同意して送信します</span></label>
+          <div class="err">同意のチェックをお願いします</div>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn" id="sendBtn">送信して見積書を作成する&nbsp;&rarr;</button>
+        <div class="sum-bad" id="sumBad">入力が必要な項目があります。赤字の箇所をご確認ください。</div>
+        <div class="submit-note">送信内容は SkyLink Japan（info@skylinkjapan.com）に届きます。ご不明点は<a href="#faq">よくあるご質問</a>もご覧ください。</div>
+      </div>
+    </form>
+
+    <div class="result" id="ok">
+      <h3>送信しました。ありがとうございます。</h3>
+      <div class="no">受付番号 <span id="okNo"></span></div>
+      <div class="quote-cta" id="okQuote">
+        <p>参考見積書と、5年間の支払い比較をまとめた「ご検討資料」を用意しました。PDFで保存して、社内のご検討にお使いください。</p>
+        <button type="button" class="btn" data-show-quote>見積書を表示・保存する&nbsp;&rarr;</button>
+      </div>
+      <p style="font-size:14px;margin:14px 0 0">対象条件を確認のうえ、担当より正式見積をお送りします。お問い合わせの際は受付番号をお伝えください。数日たっても連絡がない場合は、お電話（075-708-2369）でお知らせください。</p>
+      <dl id="okSum"></dl>
+    </div>
+
+    <div class="result ng" id="ng">
+      <h3>送信できませんでした</h3>
+      <p style="font-size:14px;margin:10px 0 0">通信の状況により、送信が完了しませんでした。入力内容はそのまま残っています。下のボタンから、同じ内容を入れたメールを作成して送れます。</p>
+      <div class="acts">
+        <a class="btn" id="ngMail" href="#">メールで送る</a>
+        <button type="button" class="btn btn-sub" id="ngRetry">もう一度送信する</button>
+        <button type="button" class="btn btn-sub" id="ngQuote" data-show-quote>見積書だけ表示する</button>
+      </div>
+      <p style="font-size:12px;color:var(--sub);margin:12px 0 0">写真はメールに添付してください。お電話（075-708-2369・平日 9:00〜17:00）でも承ります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="sec">よくあるご質問</h2>
+    <details><summary><span>Mapperで、今は困っていないのですが<span class="tag t1">キャンペーン1</span></span></summary>
+      <div class="a">PIX4Dmapperは2027年1月1日に販売を終了し、2027年12月1日に標準サポートとアップデートが終わります。困るのはサポートが終わった後で、OSやPCの更新で動かなくなっても対応・保証はありません。乗り換えてもMapperは返却不要で手元に残るので、失うものはありません。</div></details>
+    <details><summary><span>年額の予算が取りにくいです<span class="tag t1">キャンペーン1</span></span></summary>
+      <div class="a">キャンペーン価格（年425,000円）は、毎年期限内に更新すれば最大5年間同じ金額です。来年度以降の予算にもそのまま計上できます。このページで作れる「ご検討資料」に、5年間の支払い比較をまとめています。</div></details>
+    <details><summary><span>新しいソフトに慣れるか不安です<span class="tag t1">キャンペーン1</span></span></summary>
+      <div class="a">購入前に、Matic Proの30日間の延長トライアルで、自社のデータで仕上がりを確認できます。Mapperで写真からDTM・等高線まで作っていた流れも、Matic Proで続けられます。使い方はSkyLink Japanにご相談ください。</div></details>
+    <details><summary><span>どんな受信機が下取りの対象ですか<span class="tag t2">キャンペーン2</span></span></summary>
+      <div class="a">viDoc、または他社製のGNSS受信機で、メーカー・型式は問いません（Emlid製品を除く）。機器はPix4Dへ送付し、送料はPix4D負担、返却はありません。測量用途とは言えない状態の機器は対象外になる場合があるため、迷う場合は写真で事前に確認します。</div></details>
+    <details><summary><span>2年目以降や、ほかにかかる費用は<span class="tag t2">キャンペーン2</span></span></summary>
+      <div class="a">2年目以降はPIX4Dcatch Proの年間更新費用がかかります。スマートフォン（LiDAR搭載のiPhone推奨）と固定用ケース、RTKの補正情報サービス（ネットワーク型）のご契約は別途必要です。2024年9月より前にPix4DからviDocをご購入の方は、乗り換えると費用が変わるため、比べて得な方をご案内します。</div></details>
+    <details><summary><span>このページの見積書は、そのまま使えますか</span></summary>
+      <div class="a">参考見積書です。社内のご検討資料としてお使いいただけます。対象条件（Mapperのご契約、下取り機器、在庫）を確認したうえで、担当より正式見積書をお送りします。</div></details>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <b>SkyLink Japan</b>（運営会社：株式会社WorldLink &amp; Company）<br>
+    〒603-8053 京都府京都市北区上賀茂岩ケ垣内町98-2-2F　TEL：075-708-2369（平日 9:00〜17:00）<br>
+    お問い合わせ：<a href="mailto:info@skylinkjapan.com">info@skylinkjapan.com</a>　｜　価格はすべて税抜です。
+  </div>
+</footer>
+</div><!-- /#site -->
+
+<div id="quoteView">
+  <div class="qv-bar">
+    <div class="qv-btns">
+      <button type="button" class="btn btn-dark" id="backBtn">&larr; ページに戻る</button>
+      <button type="button" class="btn" id="printBtn">PDFで保存・印刷</button>
+    </div>
+    <div class="qv-status hidden" id="qvStatus"></div>
+    <div class="qv-hint">PDFで保存するには、印刷画面の送信先（プリンター）で「PDFに保存」を選んでください。見積書と「ご検討資料」がまとめて保存されます。</div>
+  </div>
+  <div id="sheets"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== 設定（Apps Script 側の PIX4D_PRICE と合わせること） ===== */
+  var NOTIFY_URL = 'https://script.google.com/macros/s/AKfycbxhyNC8vcEaBYWoabayMUogEZLWTO1Hsp73zjbW-nhUAWoffqD8pNlSAlkYD-zhLg4urQ/exec';
+  var MAIL_TO = 'info@skylinkjapan.com';
+  var END1 = new Date('2027-01-01T00:00:00+09:00'); // キャンペーン1 受付終了（12/31の終わり）
+  var END2 = new Date('2026-12-19T00:00:00+09:00'); // キャンペーン2 受付終了（12/18の終わり）
+  var VALID1 = '2026年12月31日', VALID2 = '2026年12月18日（在庫限り）';
+  var MAX1 = 10, MAX2 = 5;
+  var P = { maticList: 850000, maticOff: 425000, kitList: 570000, catch1y: 300000 };
+  var ISSUER = { company: '株式会社WorldLink&amp;Company', brand: 'SkyLink Japan', rep: '代表取締役　須田 信也', zip: '〒603-8053',
+    addr: '京都市北区上賀茂岩ヶ垣内町98-2-2F', tel: '075-708-2369', fax: '075-320-3727', mail: 'info@skylinkjapan.com', reg: 'T9130001053645' };
+  var LOGO_BLACK = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAADaCAYAAAB+QpHqAAA+zUlEQVR42u2dd7gkVZn/P9V978AMMzAiDDKIMIDkPENQUUBFxIQgiwl0jYzCrnnddf3tYlgzrhlFwIy7pjUCBhCJo+SMMIBkZhjyMOne7vr9cc779EvZobq7zunu6vf7PPXcuXfura465z1vDgmGIpEAFf81BWotfm89YB4wH9gceIb/9zxgM2ATYCNgDjATmAFM+L/TWAtMA+uA1cDjwCPACmAZsBy4F7jLf73P/2xti+eqqmev+68Gg8FgCCQwDMUI3FoTgTUJbAE8E9gJ2MH/e0svbDfyQi8GasCjXgDfCSwF/grc4P99txfm2fermkA2GAwGE8DDgIq/mlm4mwK7AfsAC4HdvXU7s839UnXpPUm62Ke0yb/1/ZIO91gN3AFcA1zmr2u9Jd3MQq77y2AwGAwmgKMI3ayVO9cL2ucBz/ECd9Mmf68FVlYgxtqDtIXAl3fLYrkXyBcC5wNX4tzbWevYhLHBYDCYAA7iXk4zAmYB8HzgxV7obt5E0NUygnbY1znNXNUmz3wPcDFwFvBH4G8ZBSUxN7XBYDCYAO4HVRUzFTwTeAnwCmA/YIMWArdSojXVcd+sQF4JXAL8wgvk2zqsn8FgMBgMLRWRbDLU5sBbgd/hYqTaQpz2V72J9VjWq6beW/98FXA28GZcBnezmLHBYDAYDGRju1nB+3zgdOABE7otr3oLYbwMOBU4qIkgrhi5GQwGgyEreDcFjgcuNaFbmDD+M7AYeKoJYoPBYDBkBe/2wKdxCUZZgWJCt3dhrNfubuCTwHYmiA0Gg8EE757AabjOUdrarZkQLTxmLN8/BpwC7GGC2GAwGBi75Ko9ge/gWjGKYJgyaze4VTylvl8LfA/Yy5K1DAaDofyCdydcYtXajMVrgje+e1oL4m/i2nOaIDYYDAbKU8cLrpToJOAJE7xDK4gfBz6D643dbA8NBoPBMEJW7wzgXbgJQCZ4R0MQ3w2cgBtgYdawwWAwjKDVeyhPLicywTtagvjPwAvNGjYYDAZGYkgCuHm6p5vgLY0gPpVGn+1WAyMMBoPBMGCr94003M11rJxo1MuX6sotfaxZwwaDwcDQxXq3An7Ck0uKTIiV49J7+SNgS4sNGwwGw3BYva9VVq+5m8vfzONu4Gizhg0GgyE+JvzXObiOSjrWa8Kq3Jfe45OB2RmaMBgMBgNhXc6LgGuaxArtGg9rWGL7VwILzSVtMBgMBM1yFhyHGwRvsV6LDUsDj7e0oBWDwWAw0H+8dz2c21FbQiaIzBqWf3+ZJzfvMBgMBgP9x3u3BM7DEq3sal83fC6uDtziwgaDwVCA8N0fuN1cznaRzyW9FNjHhLDBYDDQV7LVq2jM6jXha1deIfwocDiWnGUwGAw9Cd8TsHivXb3HhevAYhPCBoOBEWpsMUjhm3jG+VHgUyrWa5mthm7oqO6/vszTz3lGQwaDwdBe+AJ8yZKt7KLY5KyTaJQomSVsMBgMGeFbwU2+kVieCV+7ihDCEhf+hglhg8FgaC58v2vJVnYRNjnLhLDBYMBiwA3hmwDfxo2bm8ZKRwwE6aQ2jStPmg/8ymLCBoPBsp3hNLN87RqQJWzZ0QaDYawsYHE513AJV4vN8jUMwBLeEDjb035qS2MwGMZBAE944ftR4AMmfA0D8L7UgOfgkrTO8/RXt6UxGAyMQXvJE8ztbBfDkR19nLWtNBgM42JlH6lqNK3UyK5B1wnXgFfYFCWDwTBIt1xo4VsD9sVNrJmV43M1s0R91U079L+zv5u2yLi2pBuDQDpmrQQOAq5QtGowGAwjL4ArntFtAVwMPMN/X2kicHXryZBlIjX1OSaUTQhXgNuAA4D7FM0WQfvdoKhksLRkvKlSEK9Kc9CCJeSVQzal/m/TcRbAItwmgHM8g6spV1/dX83KQdYC9wJ3A3f6r8uAB3HTbp4A1uBiefjPWB9YD9gIeAqwCbA5bp7wll4JeGoLgTyIBg31CPtjykU+hawK/BE4VNGlMWODYbAyJ7XF6K/Wdxr4Oi7ZZdr/rN5E2N0LXAksAS7HzXW9B1hV4PNsCmwF7AoswrnEdwFmDoEwjmHlGVpDsvG/iksSLMIVvQCY49e/5mk5acNo1rRhOAmwziuczTR7+dk6f1GCkrE6sBdwvF+/abWGiV+vNer7lWp9wI0yramyx8eVZTSd4S01z3PuHiXLyUCn0GdFGWljJYCFgb0NOEUdDJ1tej1wFq4e8wrg4TYuqKRLrSgbG25lbW7rLfOXAgd7q1kfyqIFsTCAKc9Y7vZr0uqdpoDVfTCxJ4CTgYUmiHML4TcD3+pRCAvznglcBWzv70sOwdiNAG6WL4E/T4sLdKMzwIqJaeA/gI9E+szFuCYtE2rPDGHwVWBPT9OVFnxyAtigB2VI+Oss4CveAByr3A5xMe/ttdK1ikk84AXywcCMJgJjQmkuRQo+3Xd6okXG6zzgDcDvMxna0xQ/r/bWiHtxh81Vzp0ZXfM0u0ePmdHCTHYumG7yXp8rSVmVrONPPTOVcFM313TmqilLuqb2W65FPcbuDd0Zek8BHot0Hl45bhUOIuTmANeohbgN+FdcL96sgBhUS0B51mqTDdof16N6TYY590sQwpR/4T97Un1+kZfcdy8TvD0pSNd47btbRVAE36szYzWLumotLpkg9qoSCGBZ7/WAmwMrj3Lfe3G5I5Y3EV6p2l8pQp2uWg+X/N0TwDbjplTJwf+mJ+xlXvBuNCRCN0/cWj/XnsCPCrSGpQHEfwZmlHLf1wew4selZ/TXe9gj+d3PRGw2U1fx3x1KwHDk2XdQ3rNQPQPkXJxjwjeabFgc+GyIUvVX5WVNxsn1fKxfgFNwZUeMYPP7SsYqfilwndrgep/E8bLArhEh9s9a17G+OmUd2eU+CX3/IaLiIzS1FFcJMOoMR9b6qAhrOFUy1/0o7OupgXmS0MvPx8n6lZfcBZdcdVRGGCQj/F5COBviEprSHt1iIrSfALYOTBxy37PNAu5ZqNVxdcFPa1KP2k74buhdmmmkbm+yt78sCcMRIfjJCMqjrN1rrBtaNC/jpYHDCkIvJ46TUpXgMj+PV26waom0D30w34zLTO6WiOR3r1VEEaoEDFwM0xKw+mfOP8rJnIXWF/XpJemV4Xy0ZAlYvw2sPNbV+u1iCVhR4vrzcX0cQiqnwuuOGDelaj1c8k9ZX1qXUR2MK5vqRrgJozwj8Bppb8RUREuszEI4j4UktPGWyF4Hob/DS3D2hFHPxjXgiZGAdRv52uMa+jdgXhCYH8l9145SPkRRD7jWM/xKSWuuhKlO4romvQx4xL9vN7VqlwU+7LoUZkL1PDb0JhBS4CRcI5e0QzMNVDlLGokmK/7s3VCC7kGyttvhOteFZKCp6kewqodzbOh+X/fmyQ2PQu3pXd77NxLnoTKgFoujiikv2C7ClX2s4e8HQLRb5ysjEcZeY7IfMToyzcfFJNs1MxFFZ8+I1pTQ0J2jxHBynJE9Iyjysk5XmPuZWG13F0Y6D3/1fLkyjgKYMemaNImb7nRCjs5DYqk8AtwYmFHKc+xhbrXCzkcNeBNwYKafedZS3hTX/SrWudJW3LoSWXExvAiyP5ePU9/hAVm/dc8vd4/k1bhqlGSbCeD+LOHTgO92aHcmhHEzrjY6CWSZyn3XpxEDMQFcjPusgnNFTzZxRcsZ2gnYuIOr2qw42g7GiKE8ikK8xisvJoDDn58tcf3RY4TfrhylPTUB3P+gg/fhSk9aWcJ1pZmlARNlhLC38gRvAphCe5svBN7axBWdZNz+tchn98qSxH9T3MSyHSNZSrfj3PcmgMML4F29YRAqJ0WUqmngJhPA4yWAV+DqzjpNUrk8ErHvjOsCYwlYxZ6TFDcgYJOMEE4zMa4kYgLWGsKHNWLyoR39+qaBLWBwLUenvIJlAjgsT1oUOCdF9u8er1iZAGZ85slWgO/ganyrTYhMDvhVgQkjybjwLAGrePf+04B/yQgIiQvvPoAErL/hsj7LkgEdI3kwzSjEpqSGT8DaO0JYAW/9PjFK+RAmgIsZMbgON2Yrywjl/5fhYsAhmUtdZZEaYwmXFf0OXKP3Oo363y1w4y1jC+BrS5KAFbOMq5qJnZv1G1ZpnUWj2UkS4TyMlFyrMDotIfW4Qn1l/29QzONnwEMZl5YIxRtxWdChBn4Lsc/AJQOZAA4Xp5wNfDhjBe+C6z5WjyyAryxRAlbFexFStdYhmjUkuJF4N5oAjuLV2AZ4emCelGTOAyaAi5tOVG8yyzM7pk3/XxJ5+IPEAx8ALswI3mymajVCtuEzTAAHt4JfR2PuLzTiv/XI5/bqEsV/5+PKuPT5DXGBm8l9f8CKBENjX3f3BlItIE+SRMnrRi38NjHETK6msnoXAbvhBhlsrEZNPYFrC3kHrhvQFbggfC1zr1hJOhcAr1AMMRlAAtb6HZpGGPr3NKwHfBB44wATsFaVrAPWTn5d1wRcx5rnHX/x+1gtaee+YcLCCL0PKrgw399G7TxMDKnwreKmKr0ZeDbO7ZcHK/3hOh34H+XaqkdgijrRqqpKjqZpxCbqEROwTACHVbZejeuQddMAErASb8WVIQFLzsRfcOUq9QhlZcssUZFYdd0xE7Aei2h0ldZlsReu1WO2efqUv6Yzl/65/psL/IGO4WqX+29LY1rStGr4PjNSEfqPbQRh1ClEX8RlRk8PYAThD22MnmHIvRpzca7+kGdDzuLnR3Ei2MSQWb7PAX4DbJRxI1dyClG90QfgBie8CBecr0SoQ3sQl4g1X1ny13uhXAncAWuS8NmGhid7OP4B14SlOoAOWFeWbK+TiO+Sp3+7of8WrjsA8wKfjUTVdRv6OHhzvbWY4kor+tWM5B434QalJxGIoIpzN8tYrBT4SGBlRxSTrXExcRtBGPd6PPLnySi9Q80CHlt+WfH8RFd/JOr/qvx9dUgyAMPu7ZHmOtdUrLliFnD31sQ0bqbpAjXsoF9MevfEDsBi4DMBky5Ew6t5K1gL5csiNeDYAVdz10v8N41owXVr6RX1+6EE1ezI1lQFl+tQpj7G1QHEJjs9T1IAXaYFTY9LlJelpoRPt5+ZqGZB9ZLUdQMsx+VE9PJZMT0vQ52EtXeAjRKi/UfgC14gh6zFTYFH1drGaPieZBpwdCuA6wPQkLt5L0akJWlMpeRW4L4SCeCaPU9bxaSmSt5me2V7R1zZ1pa4HtqzVXtSCYXdj6sKuRVY6n82nbGk6wFoSEqOQg/WkDDfLfTWZyEZdDhiYogsnckAGyWMcXtPsNcE7BqUqExs+f42wmeqZkcQ9iI8VnkCjum+qeBi4xN+77Ma+eoWtYOrmzDIBOd+n878fuL3Yybw3AD0lap4VwyFYa1/l+tUC8wylNE8HzfOsRY4TFQDfutpohmzlp8d6XnGGv+74h2a9nSG6oCny6bW+ku+X6VoMvW0W1fPcmeL/atmSjHnA4cAhwH740ozu8X9uPDYH4AzFQ1RMB2JUN9MTWULPVjj6ow3tZvnnANsHvEcJUpxmJwYIktnVUBttorLiL6hD2LL6+J8Qv3sWm91VwK3oKzSSMCqdLkutwEvxzUyj9XSsOr3e2fgQ8A7PePSWNdizdb1sJYb+/fcqEBXu6zfN3DZ0OsHPMRVz+gPx5U+laGPsQilDXAZ3fMifOajuFyJds8zicuo3Ypiw1OSlyJ0c7f3WmllIFEKHcDzgLcBLwWe0oT+0jZ0kGbczk/z1yHAx4HzPO3+rGBlTtd1bxQpAeuqHht3zAfO8sbZdCQDRNefv6vTy82MaIV/wD/cVKA09bdGYiwfV5/9/kgJWFvSSAaqd5HIc58XgoPA9t4tts670IpK5ksyCSkVT8dLM+/eb/JH3SsR20RcsyX+8w8qQQJWRXlumpUXFnmt9V/PaiOw5Hm280r0VI7nqmWubJe+dolDFzRJ4BQc5K3UbPmZ7vjXC81OtyjXfF6B8VDhde/L8N+QSVj7d2F8VJRSflnkBMq6StB9VSvBINrYNt40vzBSCc/FgQLisuBHeI1sUrm65uTctDk5xpZVcJ189lE/uyJS/Hd7XAwoTzxSfucRb1HdoFrFxVC2pnDlZj/zVo+UK1zSpxbebo1Xe2Vj24L2QrTYX3vLeiLg+ZA1ewOwH67z280laCQhPEW3KqwG5DHVTKOc6Taza2cVGNvP0tu0f99rM3kqYpF9HHhTpqyyUsDaJOoeOonrAG8Nfww3VjXtM08mzTTgIHBDmgdwMeA8fFY8fLM8/1no96MaKa9gAhefPxo4t5VhJg9zPK6tYgxNWyyVXylXzaiX0jziFZiQrkLZwPfk1DZFe16Ni7vFzAOQz3kJrmONLtV6U8BnEdr9QYElEWJFHxyhx3eCc2/f4PfuspJ0OZO9/mIES0n266g2+yXP87HAzyP0d7zfW6n4OBKXL6Kt1TRSYxdZnx/hWnX2agglai2vLdDj1G4dL8rJY+WdJoBfRqC5Zs96pyqXmui0iOcoBhOjk1SCS8S4MOM+rhV4CKciXSlwaYQYnTCS7+UQLnpwxRERha/WvI9VQrem1upzAZ9H7vmpgg6drPGfIwz9kHU7Tn3+d0pS/yvrdn6kWtG1HZKC5Ge/ifQ8L1Dr8IkmIbPYrlH53J/5M9NLZYSs4QJceCZGB6xv5DgPSRNeORW5a951wDM78TkdB1lDo46rEvFAzgQ+6z8/SyDTI2AZy4KfGolRJriknHbaptao/3FAwvddGUVAM7kzA9KZvOfighjrdASrXWvss72bW+j+n0ax5V6Ls74xroYzJKMWWrsFFyJqZi3J97NwDf1DWW7yjqu8u3kS+F/1ebUB8y5pXvSlHnmX/P7LA1u/+hwu7nAeNA/6yoCE78XKG1rtxqW5f2RtWx+M3YEv00ieyS7+1BAQbLtFXxyBQeM39pE2TExrt++KLHxFoH4k4wLPMseb2zDHoqzIlxbAFOT578J1VyPwiLVm4YUDS2ABy7M/K0Lntmll2XWyfndT61wPqAxc7cMKvx6g1duJf/USfhS+8p8RE7Ce0+E5JzLJsbGF75mKV1TzMvVz/R+/aACHPcl83ga4LL0TgT/RiB9mX3ZYrON6JOWlqjIm2zEMIYT/iCh8NZP7imKE9TYWwYJAVrAe8lEviJl/PFLsd64X9pJV+zCulIQRjwMLDb4zAlOUe/97G/qXnx0T2P0sAviXuNKrYRO+Wslc6r0v3cSDhSZ/GcmN/xCu3rjVeZB9fb9a63oE/i/v/X0V4690479/PFO6MzGgLMlmDO4ZwGuBb3m3UtomXT8dUJ/eZTTq9kInYP1Tm4M8iEkhsmfrAWe0Eb7Zw3RIIKGW11OQt/RoZUBlIbu3/8aTk9UuHdKuZb3SyGkRLaWX5EjA+u9IQnF1BBdtUYliec+kDiHeGvj9aioPo5WCIHv6thw8KITw/VITT2CuQ/82dcPPDUG8KVGNxbMLvb63NP/dW+2Dto5l8c+L0ChBDsWpLZiGfH96jv62RT/TRriayzzMbCpwbDNRtNJPLbA85xmBha9OSLzf0+26yHkFsQawXBaYUcuZf4JGY41KGxo5L+I4z2HOZRF+eYNXpPNYwbKuOyt6DZ2AdVqL8yA85GiVcxJD+Aodn5g5y125D36qbnrOEHbc0dM+stgKeB3wXRqTlZpZx6EJ478jxX8T3CDzLBOT5/gp8aahVFXbvCVdWBLZbMaJgOt1QR8MVg7xcyOFFj6aodnUu2xHPQGroujksUgJWNeodW2VgPUU77myaWLNs7WrOQ2410Sw7oVn/HOT8yD/PtR7juoR9lO/6wm9GDx6gPJ96mYPd/CxD9NoruzLzgL2xXVkOVu5H9OALglhlMdEEsCb4gq79YER4vydt/piTPuYUA1BbujSjSdr9qeAyp4wj//pUQDrmsOQ6ymK0nwf38pq7weUKAHrhRGE3ZSKxbVaN/nZ/pGY9ahc3RoT8v+fjRhWyCYkytdnK+WuFkn4rvXGHy3kUa5D8QJ1U2E6r2+SGDXM2nW1Tez4Lbhm7OsCCOK6ut/ugZUWeb/ntBC+S2hk3lUiCd99cP1tuz18QsB34TqOhRDC8oyf6ZE5yFk4NrBiVc0wselMwsm8EvSAlrX7l4gJWO/JkYC1OKL7eRSuWpf9DHT/iBgJWNlGR1VVPbM8kvCVd3wMeHE/vGEi4/aaUjf/w4hmXWrrOPvsu3gmd3+TxeyXYP+Gy9yOkYD1jiZuyusiei0mlDXzcI/rqJWHnQM9dzbrdrqHfb2d7rNCe7F+t/YHup5J6rhk0LNLC1YyfhRB4NVzlG51yqUYdxd0no5+icr9uDdSAtYVik/IHm4D3BFJ+E6pfvr796uYywL+MXMopDj8uSVp/p71yz8NFzBf1iSQ3qs29JsIwk82+mT/mWuUkNg60l7JM/yD+vzpPg/VKwM9ez8NAuSd/l8k6/ermc+Vg/71EjXgmFShitAJWJ3CaKKoX2oWcMtrvw48raK8YPVICVjSEW6G4uU3RNrDKdW/YOeihG+zeKKOfVV68W0PuTAWbIGrV633sYGyKR+LwChlDy5Sz7xMjSSsRqrTPk59fq0Agv5QoLWrqAbx9R6Y+GM+hBFKsRLFcDtcTXStCS0eV6IErG1plOKETsBaksNy67dErexu6CNyNrt4awQBKLzivUp5egqNZNRYwvcy3BS6vs9kVQ3FbkaA8kL/UgIG0OwA6vd5Ho22jt0mZIS24rJM46nKhf5IpK5luqbtQy26W/VD1D8IXAu8BW4mbF5GOx2p/7Lc9/QmTESe81klaMAh73l4xEzZb+RwPz/fhG9b+u/UD0LW8esRE7BepJJtz4kUPphSYdmNi+IJsqj/2uIlJA61jkazhEnKhYpah5nASV3GhuvKFbxdhDpRcH26p70l8cIIypEuZTqpQOGrGfFlgeKcuknAbV0wfwlJ7BcwEVGs3108/dSbuPGWqwNfhgSsj0VgmHJu35YjAev9QxD/rasWu1ND0t2vXblPs7ruJZHCCiuBp/vP/EVk4fsjz0cKU8jlJj9pI3DqTSytMlnCNFnQI1U23XROAXKjikmETsB6a8binojgOqwC3w7Q1k3uswLYJND6dVsLrMujkggZ7T9s8lzTLYa3j7oLOtbEoTquFLGVQpxd+6kBuXlr5B8ZOGwCWNZ1Hi5TP0ZY4Wr/md+KZHFPK29KEsLAmgT+2kF7qamkhsN6rXcaMbf09jljC/J//xvBDazdle+PIHyrqid36Dma9YATuLqtBRZ6f3XAPZV7LvQeploLBvjVEiVgzcIlC8awlO7D9TZo14BjErh+AK0hswmf9+FKJE/2HqZTcZ25HmzR8CGmC7qdF0Fo+MCIgzVOJ85wBb1Hn+y2tWQ3WJAzKaKmXvq4kA80RO6yOTncHFOR4+QTxIkJVlWC3vmRBpWHamLSTS2w0PlS724KWXoE8PMWSsH0EPRkL/pdd1PvVQ9MS39s4zmoqNKV1ZFjwPpzLsE1cHhqi3Wbjys3vGsAQlg+68gcfbTfHTH+G2MtdHjt/aHb+R7axQvpB/usIuQyu6QnabTonG5DqIcMcHxjKAVkgXf5xGqa8InAAvj4HO8i//dvEazf57RxMUo8eJ8SdcB6fcRM2ZNyWG4vjyzY6mr27nsyCnRF9b3PMvstCB9j7WWy26AG3dcjKB5TNOZ+B+2l/64uF0/7xX+XmQ5TNmu4ourN/tAmS/Uxf0hiZarGqDPeQ7kLpyO5u34e2AXdKQNXhN4jgfdT7nlWi/XN40YdRY/Sf0dMwHpdjgSsEyMKDqGtx2l0Tko6MPdEJb1ugSs3jNEyU+7/IK07sCXqbF0TUTmI4eZe6XlFFOPy5D5b9C1TmgJqAEDZhPAm/P2oLfl6eUlGxU2omM7yiM0JZB1vUAwnCRRvreewnr4Zwfp9fhumFaNHNgOIAZ8XKQFryru7WylQ8rNfRaLxuvJ0vFJ51pIu8nQAPhJJYRCavDgHX9wKN3Fq1Eu5plXVwYExPbu/74MI9d+cTaNrSqvuU6PuQjswUyLQbOzfqAvfw70GGLMzkBzcx3ElBkVbnkKDT28zhUe3f1wUcD/FU9ROGE1l5oqWIQHrKTRq10O3Krwdl/DVznLrtiytCOb+qR5LOYWP7hPJAhb6+1oO9/NLh3y+cTfve7v3/EU7c+sBN/W5gDpbbNrHAxY1Ye6VkliHX1HvOlWCUXG6xvVNmVakg+g/e2AA4ZeH6cbofy7vdFiHNZZneWMJBLC8834RhEeelrDys13V+a1HSOi5ydNfL0ZJopKyHonoin1zDjf+h0e8j/aUGlu5dezz9gyKq9/K1jD+n9eOZjQp8xlFYSyWy2beTaEVj2eVwAJ+XwE9sYs4CIsDHQLdwrOZ5Zkn67OoNqiX5Ki7rwN7laAD1oRqXRorAetjOQTH6yLnNxzTB10lqt52RWABrOlvYQ5F5v9GuI+2nPnzVaw7Kg/fr+CFqze53zVeS9qpRc3tKMVOZXP+S73fKHcqqngvyCcL7m7VD/P8ciAB3G4SjxzEmwg3R7mqmrzkqbm/l8ZYyaQEFvA3I1hKeVrCTmQ6usV4nlv6LGmr9NhOtZ9nbkd/ifKg3jKiLmjxxvwMN+lsIAbUEYE2s96kldo6XNzrPcCOLQ7GsMeMRVnYFhevHOVEGT1GbEVmDvQgkyD+EHgucLOh4dNNav5Cjce8Mqf7+dySJGDJO/wlUgOOTi1hZT3PjWiRf7RPpVK3oK0PwTmU59lJzVevj6j1e9igWixX1JSXNFBcMVHCeBIX3/s8rrb0QuCDNILeuh6yOqTCuO6f6VYleK8YUTdh6hnCo7hG6pUhUQi2xSXQpIH2/47M5wm9PYzLX5B9Lvqs1XGdtfb0dF5psy94QT3qYY1EjYvbPrBCIet2O3BnC76W+J/NVR650M1sarjyuqQPuqqoWeaJvyeB17Ed/SWqscqkf55kBPkf3iAk8Jq23NTNAwngZsMOdO/TGbgmBJ/yAuxSryXurzZ0WIWxWMGS6HHpCFsqwhBOw43CqwSmhbyJJk8PsKbyXndl7l1TbSqXeVpLC36v1Lvr/j2HYpFkFDtKUMK3k/e0pBEE8LXeKqu0EMB4ZWCzSMr6zf6Z0gLoalEEfi1rdHmO31kY4XlCKkcprhxwLyVroh6OzYifbVtVwnjaP8ci3NDzS7x1/EXcyKk5QyiMxdVyqX/+6wNZTbHepeKthl/2qaUXQR91r5xtF1CpudvvX0XR1DRwSsBzVgeO9YKo3sHqqvrfGWW6yjLqvSNYGWlGcLRLHNpTWZJJYOV2Cc4V3Y9iJ+u2VwQvgpyHa9vQXz2zr6MaJqn79z1uUErEmUMQQJes22bJEHfi5rEeRSNLjRjtwXJmJC5h9EfFyToeEKnGME/MLMSgCWG+W9KI38vnnRXIHSmx31m43tKdMsxrqt/t7BIlYP0wYsLTITlqV0+J2JHrHX3ScqIaAa2IlIB1K42xe60SsOYA94x4DbDwu4dpeIOjheIqtG4CHlug6Zm8OoFrS+ANwI9xXZJ+TKN5eW0QbgOlKT2Ba8X5yAi7YbR2fRGNzje1AT/TLgHWVO71oGdkmpl8LdDhE+v3LbjYdifrV57xRlwzlGSE6UoszAlg98DMTTwaj/u1a2e5JTTyTkIy20omlpr2eZ8dPN+L4ca/HjekopMbf/MRL5MTr9tcL2eiv8tfhzyDraY6T+mf3wN8mka/3mQAlsIMGjEQStLp6/UDrumbVlNiQs4FvkR95vV+L4umIbnfRrjErzz11WKRfaZEE5C2weUXxLDcrmjDQCsqIezhSLW0y3AdwPqhZaGBEyIORTkxRx31m0e4/ncQ08+aEuRMv4D9XLUOV1pAAlc1k8Q1Hzf+7woawyTSyEJ4He0TFRixWEiCy9a8XcUhB8W0F3jGlQYQingFTvANv5dFJ1+J9XAcrtqgnkO7TjJWEyWI/+7q+Uw9Qrz1ahXXa/U8O3mLJ43wPDd6Yd+PJyPNJDzFOH+X57DaF42450+/c817qF4R06tawbl4J3CZxxM9XtUOVxIoiWsaF4f9Aq58ZMaALOEyQFx4T9Doaz3I5J9NcU3ei7aCK6pUBW+hnEHxbndxbW2CK3NIcwjfVJWtXFfCBKx6xMzdpM3v7BUxIazfUrJElaztEcmNv1rRX9omZLVnierUBe+MmYg64a3IyR43K/Eui1VtirXXAUcDB+e0ALohzAkliI/BNdk/fsClNKMuhAG+DXwA1wUntldBGE4VF2O6KtDniwA+AxcPrhbMkEWrfifO5VnLwYRlre/CJcGMunVRz1huyYDjrWnGcouhfFza5z6K5TyfsJUBmv5ux1UKtKuj3hQXk6Ykk+/E43cArhT2kgA8YWD4YuDYhZ5KdEAJmhcMQyz4tAE2WJfP/EiAOGhVdYCr4TqyJQEmLyVe8K7oIrNcYmlnloCxiZBYn/ATh2RtV3iPQ7vM3Qlv3cV4nimc+72fvRR6PTRCtrGcu//JkUX+3BKMH2z1/t+Ndf4qfbid81zr+a+zIh12cElEmBuaImZE1wakyMje7RzQdfkY8Ftc7+eiXU7igXk3Lms1b+wzVXHMsgjgbXFhrtCuU/xermgRb9XjKBdE6sh1dwGejKzbPIZr9LIhceMPqjHHkbjwVz30GawUkICV56oPgGmXiTCIXJJU8YfwvAht79rt5Q7KNZQU7Ba9A/hEACYsZUdPx9V/pl0c4jIlYMk77+6V8JA8QO59VY7Wibt6g6AeQQBfR+tSnmF041e7cOOXpfqjWd7GBjTGMCYxDkloRroy4iJOUn4kkZjnyQPyJiRqVOa8gp9BGMhSXC/ytGDhINaXxNC7sX6rODfYtSVIwCITb42RgHXZkCSE5enI1W1nuN0ixX8fo1FH3SoBq0qcOupB8tY34RqNhFTUoi3ezZEYeUojeaBshJF1b4a2ghPg17g68djtKUWIbURYd2Eo63cbXOONbqxf7ba8Q/UbrwzplQxJ60S97tfkaJ0YMyHs8oLcz1vRGBQf2mq/Bbi/xTpWVK/27QagnKcReJ8kT24JvCp0SVIlUhbkkg7TX4pkqBeVOAZcURpxEpjQq8BaXMu+QXRjqquazVD7mQZSHP4N58bqRntOlRt1lWraUR/SK82pQIWeOCRrfL8XHq0yd+u4WuRdIwiyPKU83dZRrxepjvqqHHXUu/RA30VZ6DF4UaJaiFZChuAmIjV3uM5rg/sESuyRzVmJG65cFvdddq+mvUXxBa+drQhIkEJ0P8BN8Nk4cklSmmlJOSrK0U40uon1InQexsW+J4c0j0He6y5c28d2VoRMHIrROvEG/zxJm9KZBSohLLQr9zY1datfAbwwMzhl0HXUe0d4nmYDY1YBi3FDe54Z8PPFy7gvbnzuH0e5JEmE7WsClrXIQOj/KmkJkihK+wL3+nd9dYR3lXt/ZQAlSVKS89sRCSnIWn2vz7WqeXqeGtJLnm2/NvQn9Pq2iAPvP93GqJBnfHWE55F7n1HA+RSaPyvCc4tn41ltnlue56cRW1BK2dUjuOl4AF+OOEjjJ2UIaVb8hp6bEZhFEI3c60+4msNKydzPwlAOBB5SRHlmxGbyu/l1rg+oP+v6Qx5WqKh45zrlOk5Leq2gMcQlaSPwvhGRUR6dQyH4bMReyu8taALSBricgBh1y8vbTHaT79fD5fTEmIAke/uAUgwq3hAJfcZEIVntPTkjLYQrKqv1TiWEa30OaJDvz+nAEEZ93Q7z7nV9wFfTSISIIYR/HdkKlsO1JtJ7FmH9/qSgNRrWuK+UFF6cU3gsCWwp1RUv2THHDOBzIlmSKXBQnxawPPMeESxNuf/5bXionsi0NkITjroaurOnUmYkMfHPEb0rny2DZ7Wi6nSvbtLFaqrNYAepJ57KbPpK4KM0So/KKHwPVwRfyxDGhyLE8qtKCYg991P2+sVDfADkmfZT9FtW61fo7ps53JSbEX7iUB4viXy/oQrfhLYkH/Lv34/SKGf6DREFzZdyTEB6VQQ+IGdoqWp3OZH5+q4I6yLveF8JZr4/iRhnAx9Wroxur6W4cW07RKyNZQAbUKHRNm+qCWFc65WPJPD7Jv5zroo8fqwodx4l9BAMUgCfkCPeelAEK0no8Oc5rN9F5G8J2u/zLClgKMxEpDa++rnfkEMAfzKiG//tNMa+Zvfz6cCjEWnsHSF40MQASksq3nL9OHCSPxiLcNmjW3vNcZZa6NU+5nSHFzh/xmXqrco00Y5VJpNGzKidj8vazNaiSZberrje1yGz9FJPJ1M+pve1AQi5XYZ0MIGs+fOAl/g9G+X5vXmt/XblNc1aFU4EPotXZM5Ns7O0Z2bQR8jnuSoz2Yo+qhBi1VHXVAvUepvn2TvC8wi9XKO6NWZlyN24BM2jAtOYYDFwqn+WZAh5UU9jBVv93/q4mr2ZbX6vOqCY4GxcIkIMRndIGw1PtMRTI7hn5bBt7N0xsVzRon0Oa223JPz9oSSDyfO4Vx/1imGnBKwfRLCUhAZfmiMB6+SIluRbCkrA2hiXGBXDjX+n523t3PizcaVVMdz4y3DzwJs9j+zzyyPxIrn/YUXz2sqA5uemqttSVc0UrqjEm9X+avZ7iYoTxFQaKjSyLWPOUa21YXSH4ybA1ALuo2jzDwHfj+wJANdZau4ARiPmGV92CPCCNs0LyoJUjXFc1mGU5ASuB3Ss2bXXd2idmESaXSvN/K/usxeBTnjaNGId9coWnfbks5/ZQfmiwIYgN+FyCJpZm3WVVHdbC89HiDU6vmjeVyFOe69OglgnryRNruzvpQOakvE6z1jWBma2aY62ecLsNvGaIJGe6ZQCGsx3i3m4dnzDZAWLAPjPEszt7Wb/r1du3HYTh7aJ1Drx1iGZXSsC4D4arXdHYQJSmhnAUOmQkV2JoOzr56m2CYutAn4c4fwJrzsEV5KZFkVHFWALz8QHYQm36/eZDlg5yMaQ5uJi1pdGGkg/2UUD9mMjHFSJvdyCq0GO0R86US1MdxwiASzW78uAZ4+B9ZuNb3bqlLQL4ScO1VWccLqFQlBR7UyfEtGSfKzPOGFWAU8jeJku62ICUhrB+3d5zv0/w+9/SINAD8U4rkg6qnjh+84ipTrlmoxRUbHWebgkMAJvNt7i6zSIQJjOczzTC90aTp7jqxGFYZoZMzksSuLEGFm/mlHnScBaGLEd7OVDMrs2j+VGlyNB94jUt3pdh32tR0wIk8S1azrQkCh31+Lq0kMbBEL/r/VyoJDZBhXctJvXAc8f4AB2hjjrcxpXb/sqv1Z3RRLAeRuw17xm9poIh0NcT+cDf4k8K3jXIenxLdbvUbgYfW1MrF+Jt96Ug1HvPWSzaxdFzNu4rCBG/zRczDV0HB1chcnfOrjxNyGeG/8eXKlpJz4rBsgPIu1vDZcYd0zR63C+34A5yuobd0youZASg/5phI5M8rkfzZm1KTHxm4nTslEY3z9GyvyV97tmCASdnI0ZXvOulzzzObsHN6mazFaZsuvj4rIxMmUfATbvcCarnnZiPE+njlzdnK8XRqxxbcfX5HkOiPg8Z+XkYxWVI/JghOcT+rnRG0d9h20rSovcCjhNaRxlHOfX7eSho2nUflV4cr0hgbXAhV0QYd1rywdFUKDEIv+p9wZUIw1b34r+uwtRUD7A671FXh8Tj5HwhBu9kGmXKbsNcSYO4ZXO+1u4HysDSAj7Gy5LvIgErL0jus3b8TV5nj0H8DzVHLyoiivV+nWE55PzvyOu9K3vWcEVNYS5DvwD8HXFZCtjGPMVt/ObcAH+pEliQOhg/ywazSeSLoT2sRHikeKOfBz4VgS3sLjANozASPPuzQeHrCQqlgC+Ogej3o3GKMXQCVhXt8ldiTm7NlXx8bV9JgTVM27zJEJc84ouErBi5Bl0y2cT3BSyGMq5PNM7i+B9FaXZVry78zgvhNMx0vB1PKEG/CtwujpIVeAJXIZjjPjvtrjs9LwHUPboJd4lVwtMiPL+p+NqBycCC/66ymYdlAAWWngjLhZWHyMFNVEZx3kTsNKI8da8s2tDn4fL+xQCouRNqpyH0AlY7fha0iQhrDLghLBWvOECXI5O6Jrgqhq2sahfGSmLuRRXUzWphPBPgI0itfkaNHOZ8O85B/g2rt9pdhOX4pIDYgjg3dQzJV0kCMwFjojkJq/ikjf+L6JratcB0ohY4R8YQ+u36vnCjUOSgFXJNLxIh8SSvLwg9/Mz6FwBEauOGlzzje0iuvHv6GIdhT7XAj+MlKgpiZfvoMCY5/WZhhdC4PvkaB856r1tAfbHxcJTNXZNJ0F9N0KzC1F0Pt9D2zzdtjHGTGRZh2dFmAAk7/b7AcWA5V3fOwYtJ1slntyOc78Py8Shdq0K9ezapZGe53Ease9+E7AOj9BiUXjL99rwNfnZoRETsH7SwxrK7+7oBXHooRty78dwOQY973lFxTyvy1g3NVzXpz8B78tI/koJBK9YjRsAJwLn4RINaur/yVlvWKRmBb3V24lrZD//HqHrusU1tQS4MHBJknbNzwwcz2vlFtzYn4N0zBIUdcLTqhYNJmQ9tqeRKDfIVoXy2Qu8NRnDclvqlY9+LLBhraMeloSwTk2CbvLyKkZeinhM39gPfWlL6dIW9Y4zgc/hJu7sp6ydURPESUbwprhaziW4hgrrtfDn56k3LNLNObePrk+iPLwukqUorsCvBWZyct/NI2TYtnrHd3hXXH3MkhPTTPy3OiStCq/I8TySEBarI1e/NeHdVkCErqOOHVbolBCW5++/H6mro9z/Lf0m+clGHNjCzaBrHadwCVrPbGJFD6NVkKjn03gxcG7G/VFv42p4ENdPNiQRyjPu24cLRRSLv3miINKs4Jk0MulDu/oOihAKyCqo84AHAr/fsF5y9o/JMQM45sShY3LMrv1UxNm1JxQ0AWmWP78x3OYPedpupqwnahbvTZGeZ2UfCraeILUs8pSk1/ez93kfXMe9HvNWzx5NDmI1Ugyyk6WbXYw53jI8P7OAtRyH/eKIMzDf3mecUd7nCNU0ohLwmuHX5UMB46Mi+FZEUISaCZaPj2HsN1WKYE1ZQZU25+7iSIxvmvbTloQ2fh9h3+qqHWw/iqG22qcjjSBc0sZarKgJSGsiPc9VfSrW8rff8M+6VvH4ENc6v1fn98qTJlRM6yHvRnlhC/O/qjZhjnfJvQ34Ha4V2O88g2wWa02VOyMN4AaoqFhdPROrWIirbz4KF0OkixIredZr1SjEWuD09n7LOISoj8VlKK8LLKTWqf7Q7w40Pm3KC/pTvCVajdACU1yp83BVAVNj1PdZ01KCa3RwW4dWhU/156umzmGo57kHl73b7nlm42LSIceWSjjiIVwJTL8jCOu4TP9KmwETFNhS9iqVRVxrwVt39rxvXZfCMe0hdHa1+netD5nwfW/IzIhUt/xc3EjSc7p99olMz+Pz2whgbV2KAJvA1Z6+BNeR5jzgbK8J39LiQbIziNOcG5ZkvupDrj9nA2+ZvwjXrWSh+ptaxlLPK+D/4NdnOuBmTqs4Wj/xW1nfQ/waLA94kPVnrsMNqnhZB+Wm3sNBnYHLUfhEhDq/rHv907g+uOOMu3FtH5MWE4dq/pzNixQeuA1Xv1pp0QGr5i3JZwR+nqrqpbyizwlIqKqCJHDp5yT5E7AO7oJf9uv9u7pP75ZY6JfgOmPtoLoYEjAZddLz23N6fXEhmj/lJNisIAbXPPw1/lqDqxm8zF/X48oYlhcsxKq4rMvtPQN4lv+6dQuNr9rjAVvorf6JLmrTZuL64qYBO2C1UxpmA7+NzKhrOeinl8Pwa+CttB4YHupdJnBlXVdHzrweJgt4Qg28b2fprMZ1RlsXuFn/erhxmJ2ep+o9QGsCCo+aP+O/zVjf/ZydBbiSpnWEn+99eRurXQ9G+FmX+zrlFaSky1rzs/v0IqTKmHm5V9zTiMp615niSYZw5uC6ojy9h2xPLYybEc6jfjPvwiUZ3OOvZV67fgJX5rAus3Gz/LWht0S2UIXq0nd2oybPUmtibTOG7sNhwhpcOYvsyeomCpmUT63FufV+zpObs6cYDOXFPJW5HZo/LB+C6WKM+7zbbAzih96Kne7DDaITFJIukrLWZTSIxBNjnlhtTTH2SgDNO+1RG+vVK1F02UZsemoW4/mN10x1289u7psOsGZ8nJEnphuzd3w6gs/DCM+BTiLSWRqYF8Uo2euJ2YsAPtsL4KQAk7zSRCinmYlL+pqRg8hb/e1EhGD7qCtZDLiW9C88OfOx0/NVIjQAIKdr0JBPCbbnKcadmQ6JwKiPeP06ozDzVi/0ubhY2+yC3ZidXMFpjr8dl8EQlLTl56UZpSntsO8m/AzjqMhYmGVMUGmSUn8XjbrX+gA0v2aXYfRj0Y/jyrl03Z/BYDCYAM58/ytbGgPFtuq7mUavXBO+BoPBBHALZvkrXFZy1ZilgeJ699YtjGAwGAytBXAFV1h+fsmz+wxETQL7yxAlhRkMBsPQCWD9sx8aszQURGN1NeXEFDqDwWBoIYAl8/RMGn13zQ1toM/evTdb/NdgMBjaC2BpC/YgrguRlYMY6DMB61ritpE0GAwGRqkOuBm+hevBa4kzhn4SsC7zwneCsAMtDAaDYWRquSc6jKv6My55Zl/VTtBgoEsPy4XeGl5nS2IwGAydLWAZUfhNYD9bKkMPWmAFN3DhCdzQjKolYRkMBspd9bEaN+iirz7B8n8b4saRzVdM1WCgizjwKitBMhgMJYcMMPoC8OE8IbeJHLNAH8XFgj9s1ouB3tzQs20ZDAbDmOAveSs+khzMM8XNB74ONy/YLBkDZZxMYjAYDH2WXD4G7ATcp3og9JwFLa0D7wJ+ALyjzznBBsZ+7rTBYDBQwlBbxRuq93meVy9izq1I9i8Ca6wxh8FgMBgMTb18F/HkEax9C2CR7H8Fzsgr2Q0Gg8FgYPxKLnOH3ZIuBqrXgR2AK4EZNqvXYDAYDIa/i//e679Pi7CAwTXhqAA3Ad/JE1w2GAwGg4HxarmbW/hCd8lUIuU/CbwWV1qSmhVsGDNN1/qiGwwGMvW/KU+O/04XLYAlI/oO4MvAv1t7SgPjl81tFQAGg6GZHL2w27LLbq1X+f253ty27liGccpwvB/4kdG7wWDIeIangE/gpggmISuFxOJ9q/+QaTX9wS67yngJjR9j/MZgMDDABgmJui4E9sdc0YbyQmj7T8DBwCSWgGgwGJrzijRGh6Kq/7BnARfQyKi2hCxD2dxLdU/rzwYuV7RvMBgMFOFO7oUxVYE7gc1w4wrrFhszUL7ygipuusl3TPgaDAaGpEevuKHnAlfhBjZYQpahTMI3AW4D9gZWqpiwwWAwUFT7rH6yvx4C/jl05pfBwGCyG/8Z1+HG6NtgMDAMLuisK/pGYFtgTxpdswwGRjzx6jTgJHM9GwwGhnRMnAjbjXF9orcwV7SB0R8rdhuwCHjUXM8Gg4Ehc0FnY2UrgMVqWpIxLAMj6HaW6+3Aw+Z6NhgMDKkLWjOuCdzIwrm4kg3LijYwgq7nCeDTwDf9v831bDAYGFYXtL5XBdeo4AKc+84adBhGLe57MXCQVyDNk2MwGEZCAKPGFO4ILAHm2NxgA6NTcvQwsC9wq43cNBgMjEAMuFnjgptw8eCKufAMjE7J0Vu88K2a8DUYDIxIDLhZPPga3MzgA3DN7C0ebGBIZ3lOAB8DTra4r8FgYERd0Nl4cAr8GjhMMTqDYdiE78+BI1W9r8V9DQbDyApglADeGDc1aUdLyjIwfElX1wLPpdHtylzPBoOBUYwB06ShwYPAUbgEF4utGRiiIQvLveX7qAlfg8FQJgGsrYzrgVcD62jEiQ0GBpRwBbAaOBpYaoqhwWCgJElYrZKylgJ3eIujbuVJhgF2uqoAxwBnWtKVwWAoswDGC9wJ3NjClcCLPdMzIWyIKXzF9XwC8G1Pk9O2NAaDocwCWAvhi/znHmxC2BBR+EqbyQ/jJhyZ8DUYDGMjgPX4wnNp1AibEDbEEr6fAE404WswGBjj0icR/F/zDHIqM4nGLruKuoS2Pq+UTlP2DAbDWAthycD+qmKUdRMYdhV01b2Vm+JcziZ8DQaDoYkQ/oxnlNMmhO0qWPh+3ISvwWDAYsC0qkX+nf96sKrTNGZpoI9Soyou4eojqs7X6s8NBoOhRUz43YqB1sySs6vLS9PMO83yNRgMhu6E8DHAWhouaRMsduW5hFZW4TpcmfA1GAyGLiDTkl4ILLMMabvoLtP5HuB5GVoyGAwGQ5dCeGfcpBoTwna1S7YS2rgCeKYJX4PBYKCQ5LCNgV+o+J7Fhe1Km9DDT4CNhiix0GAwGCjDpKYE18EotbiwXU1o4MSI070MBoOBcUrOkiSao4EHMJe0uZzdv5cBr1SC15KtDAaDIWCG9I7ABYoZm0t6vFzOUst7LrAdjXivCV+DwWAgfHLWJPBpzCU9ji7nOq6zlShkFu81GAwG4saFwc0UvtkStMbG6r0BeIHFew0Gg4GBuqTFGt4EOCVjKVkv6XL1ck5xU7PmYs01DAaDgWHrY304cJO5pUuX4Xw9cNiQ9S43GAwGQyZBay7wORptLM0tPbp1vauBTwIbmtVrMBgMo2MN74ubrmRu6dF0N58JLDSr12AwGEbTGgZ4PfDXTL9gE8TDK3hvAF6dEbxm9RoMBgOjlSktjHtD3EzY5WYRD63gvQ/4IDBbKVKW4WwwGAyUwy29BfBZ4FETxEMjeB/BxXk3N3ezwWAwUHq39HbAlzzz14LYkrXCJldpwfswLllugbmbDQaDYfwE8QLgUzRmDmtBYVZxcdauVmzuBf4L2NoEr8FgMDCW8WEtiDcHPsCTk7UkYcus4t6s3eygjBuA9wLzMoLX4rwGg8FggpiZuAzc32YEr1nFvVm708BZwFHAeiZ4DQaDwUAH1zTAnsBngKX8fYcmE8ZPFrrZjmO34Fz7e/D3CXHmajYYDAZDS0GshcQc4Ajgh8CKFq7W2pgI5HrmnfX/LQd+gGsHukGHNTUYDAaDYpIGmtYR19TPngYc4oXM84BNM39TU+uZlGBdtYBtVh60HPgT8HPgHFwym7Z2RWgbDAaDwQRwT2tTaSJMNgUOAA71wnjHJusoVmKSaQwyzAK3rp45K3DruGEX5wNnAxd5r0C2freuhLbBYDAYTAAHE8YzgF2AZwMH4XoYL2hxDy2Uk4zFHNOq1f9OWjS/SIHbgUuBC4ALcdnMU008BSZ0DQaDwQRwVGFMxk0NMAvYHtgb2AfYC9imicu6k8s36WGP0ib/zusSXw7cClzlhe4VuISqVTTvLmZC12AwGEwAD3z9RCDXW8Q9n+qt4u2BnXDduLYBNvP/NzvSs67EuY2XAbd5AXuj/3o78BDN23kmmUQzg8FgMJgAHmqBDK5MpxU2wjWn2ByY76/NgE38tbH/nVm4OuVJLwhn+L9f5z9nyluqq3C9rh8BHlDC9h5cF6plwP3AYzlKskzgGgwGQ2D8f81OrJHhoz7fAAAAAElFTkSuQmCC';
+  var MAX_PHOTOS = 3, PHOTO_MAX_PX = 1600, PHOTO_QUALITY = 0.82;
+  var PREFS = ['北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県','海外・その他'];
+  var CAMP_LABEL = { '1': 'キャンペーン1｜PIX4Dmapperの乗り換え', '2': 'キャンペーン2｜GNSS受信機の下取り', 'both': 'キャンペーン1と2の両方', 'unsure': 'どちらが対象か相談したい' };
+
+  var f = document.getElementById('f');
+  var $ = function (id) { return document.getElementById(id); };
+  var photos = [], lastNo = '', lastQuote = null, baseTitle = document.title;
+
+  PREFS.forEach(function (p) { var o = document.createElement('option'); o.textContent = p; $('pref').appendChild(o); });
+  for (var i = 1; i <= MAX1; i++) { var o1 = document.createElement('option'); o1.value = String(i); o1.textContent = i + '本'; $('m_count').appendChild(o1); }
+  for (var j = 1; j <= MAX2; j++) { var o2 = document.createElement('option'); o2.value = String(j); o2.textContent = j + '台'; $('g_qty').appendChild(o2); }
+
+  /* 受付終了の反映 */
+  var now = new Date();
+  var closed1 = now >= END1, closed2 = now >= END2;
+  function closeOpt(v) {
+    var inp = f.querySelector('input[name=campaign][value="' + v + '"]');
+    if (inp) { inp.disabled = true; inp.closest('label').classList.add('is-disabled'); inp.closest('label').querySelector('small').textContent = '受付を終了しました'; }
+  }
+  if (closed1) { closeOpt('1'); $('card1').classList.add('closed'); }
+  if (closed2) { closeOpt('2'); $('card2').classList.add('closed'); }
+  if (closed1 || closed2) closeOpt('both');
+
+  /* 流入元 */
+  var qs = new URLSearchParams(location.search);
+  var src = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].map(function (k) { return qs.get(k) ? k.replace('utm_', '') + '=' + qs.get(k) : ''; }).filter(Boolean).join(' / ');
+  if (!src) src = document.referrer ? 'referrer=' + document.referrer : '直接アクセス';
+
+  function val(name) { var el = f.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; }
+  function vals(name) { return Array.prototype.map.call(f.querySelectorAll('input[name="' + name + '"]:checked'), function (e) { return e.value; }); }
+  function txt(id) { return $(id).value.trim(); }
+  function camp() { return val('campaign'); }
+  function has1() { var c = camp(); return c === '1' || c === 'both'; }
+  function has2() { var c = camp(); return c === '2' || c === 'both'; }
+  function yen(n) { return (n < 0 ? '−' : '') + Math.abs(n).toLocaleString('ja-JP'); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* 見積の計算（Apps Script 側と同じ式） */
+  function calc() {
+    var lines = [], n1 = has1() ? Number($('m_count').value) || 0 : 0, n2 = has2() ? Number($('g_qty').value) || 0 : 0;
+    if (n1) {
+      lines.push({ name: 'PIX4Dmatic Pro 1年ライセンス', qty: n1, unit: P.maticList, cp: 1 });
+      lines.push({ name: '年末キャンペーン値引（PIX4Dmapperからの乗り換え・50%OFF）', qty: n1, unit: -P.maticOff, cp: 1 });
+    }
+    if (n2) {
+      lines.push({ name: 'Emlid Reach RX2 スキャンキット（本体・PIX4Dcatch用ハンドル・専用キャリーケース）', qty: n2, unit: P.kitList, cp: 2 });
+      lines.push({ name: 'PIX4Dcatch Pro 1年ライセンス', qty: n2, unit: P.catch1y, cp: 2 });
+      lines.push({ name: '下取り値引（年末キャンペーン：viDoc・GNSS受信機の下取り）', qty: n2, unit: -P.kitList, cp: 2 });
+    }
+    lines.forEach(function (l) { l.amount = l.unit * l.qty; });
+    var subtotal = lines.reduce(function (a, l) { return a + l.amount; }, 0);
+    var tax = Math.floor(subtotal / 10);
+    return { n1: n1, n2: n2, lines: lines, subtotal: subtotal, tax: tax, total: subtotal + tax };
+  }
+
+  function refresh() {
+    // 本数・台数は1を初期値にして、すぐ見積額が見えるようにする（変更はいつでも可）
+    if (has1() && !$('m_count').value) $('m_count').value = '1';
+    if (has2() && !$('g_qty').value) $('g_qty').value = '1';
+    $('b1').classList.toggle('hidden', !has1());
+    $('b2').classList.toggle('hidden', !has2());
+    $('b2n').textContent = has1() ? '3' : '2';
+    $('bcN').textContent = String(2 + (has1() ? 1 : 0) + (has2() ? 1 : 0));
+    var t = f.querySelector('label[data-only="1"]');
+    var off = !(has1() || camp() === 'unsure');
+    t.classList.toggle('is-disabled', off); t.querySelector('input').disabled = off;
+    if (off) t.querySelector('input').checked = false;
+    var vd = val('g_kind') === 'viDoc';
+    $('vidocFld').classList.toggle('hidden', !vd);
+    $('vidocInfo').classList.toggle('hidden', !(vd && val('g_vidoc') === '2024年9月より前にPix4Dから購入'));
+    $('emlidWarn').classList.toggle('hidden', !/emlid|reach\s*r/i.test(txt('g_model')));
+    var telNeed = val('contact') === '電話' || vals('purpose').indexOf('電話で説明') >= 0;
+    $('telTag').textContent = telNeed ? '必須' : '任意'; $('telTag').className = telNeed ? 'req' : 'opt';
+    var c = calc();
+    $('est').classList.toggle('hidden', !c.lines.length);
+    if (c.lines.length) {
+      $('estV').innerHTML = yen(c.total) + '円<small>（税抜 ' + yen(c.subtotal) + '円）</small>';
+      var s = [];
+      if (c.n1) s.push('Matic Pro ' + c.n1 + '本：通常より年' + yen(P.maticOff * c.n1) + '円安く、5年で' + yen(P.maticOff * c.n1 * 5) + '円の差');
+      if (c.n2) s.push('RX2キット ' + c.n2 + '式：通常より' + yen(P.kitList * c.n2) + '円安く');
+      $('estS').textContent = s.join('／');
+    }
+  }
+  f.addEventListener('change', refresh);
+  $('g_model').addEventListener('input', refresh);
+
+  function pick(v) {
+    var inp = f.querySelector('input[name=campaign][value="' + v + '"]');
+    if (inp && !inp.disabled) { inp.checked = true; refresh(); }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pick]'), function (b) {
+    b.addEventListener('click', function () { pick(b.getAttribute('data-pick')); $('form').scrollIntoView(); });
+  });
+  var c0 = (qs.get('c') || '').toLowerCase();
+  if (['1', '2', 'both', 'unsure'].indexOf(c0) >= 0) pick(c0);
+  if (c0) setTimeout(function () { $('form').scrollIntoView(); }, 50);
+  refresh();
+
+  /* 写真：端末内で縮小してから送る */
+  $('ph').addEventListener('change', function (e) {
+    var files = Array.prototype.slice.call(e.target.files || []);
+    $('phErr').textContent = ''; $('phErr').parentNode.classList.remove('bad');
+    files.forEach(function (file) {
+      if (photos.length >= MAX_PHOTOS) { showPhErr('写真は' + MAX_PHOTOS + '枚までです'); return; }
+      if (!/^image\//.test(file.type) && !/\.(jpe?g|png|heic|heif|webp)$/i.test(file.name)) { showPhErr(file.name + ' は画像ではありません'); return; }
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var s = Math.min(1, PHOTO_MAX_PX / Math.max(img.naturalWidth, img.naturalHeight));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.naturalWidth * s); c.height = Math.round(img.naturalHeight * s);
+        var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        if (photos.length >= MAX_PHOTOS) return;
+        photos.push({ name: file.name.replace(/\.[^.]+$/, '') + '.jpg', dataUrl: c.toDataURL('image/jpeg', PHOTO_QUALITY) });
+        drawPhotos();
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); showPhErr(file.name + ' を読み込めませんでした（JPEG・PNGでお試しください）'); };
+      img.src = url;
+    });
+    e.target.value = '';
+  });
+  function showPhErr(m) { $('phErr').textContent = m; $('phErr').parentNode.classList.add('bad'); }
+  function drawPhotos() {
+    var box = $('phList'); box.innerHTML = '';
+    photos.forEach(function (p, i) {
+      var d = document.createElement('div'); d.className = 'ph-item';
+      d.innerHTML = '<img alt=""><button type="button" aria-label="削除">×</button><span></span>';
+      d.querySelector('img').src = p.dataUrl; d.querySelector('span').textContent = p.name;
+      d.querySelector('button').onclick = function () { photos.splice(i, 1); drawPhotos(); };
+      box.appendChild(d);
+    });
+  }
+
+  /* 入力チェック */
+  function setBad(key, bad) { var el = f.querySelector('[data-f="' + key + '"]'); if (el) el.classList.toggle('bad', !!bad); return !bad; }
+  function check() {
+    var ok = true;
+    ok = setBad('campaign', !camp()) && ok;
+    ok = setBad('purpose', !vals('purpose').length) && ok;
+    if (has1()) {
+      ok = setBad('m_count', !$('m_count').value) && ok;
+      ok = setBad('m_type', !val('m_type')) && ok;
+    }
+    if (has2()) {
+      ok = setBad('g_kind', !val('g_kind')) && ok;
+      ok = setBad('g_model', !txt('g_model')) && ok;
+      ok = setBad('g_qty', !$('g_qty').value) && ok;
+      if (val('g_kind') === 'viDoc') ok = setBad('g_vidoc', !val('g_vidoc')) && ok; else setBad('g_vidoc', false);
+    }
+    ok = setBad('company', !txt('company')) && ok;
+    ok = setBad('person', !txt('person')) && ok;
+    ok = setBad('email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(txt('email'))) && ok;
+    var telNeed = val('contact') === '電話' || vals('purpose').indexOf('電話で説明') >= 0;
+    ok = setBad('tel', telNeed && !txt('tel')) && ok;
+    ok = setBad('agree', !f.querySelector('input[name=agree]').checked) && ok;
+    return ok;
+  }
+
+  function jst() {
+    var d = new Date(Date.now() + 9 * 3600 * 1000);
+    return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate() };
+  }
+  function receiptNo() {
+    var t = jst();
+    var ymd = String(t.y).slice(2) + ('0' + t.m).slice(-2) + ('0' + t.d).slice(-2);
+    var cs = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', r = '';
+    var a = new Uint32Array(4); (window.crypto || window.msCrypto).getRandomValues(a);
+    for (var k = 0; k < 4; k++) r += cs[a[k] % cs.length];
+    return 'P' + ymd + '-' + r;
+  }
+
+  function collect() {
+    var c = calc();
+    var d = {
+      form: 'pix4d', no: lastNo || receiptNo(), campaign: camp(), purpose: vals('purpose'),
+      company: txt('company'), dept: txt('dept'), person: txt('person'), email: txt('email'), tel: txt('tel'), pref: $('pref').value,
+      contact: val('contact'), timing: val('timing'), note: txt('note'), src: src, page: location.href.split('#')[0],
+      website: f.querySelector('input[name=website]').value, quoteTotal: c.total
+    };
+    if (has1()) { d.m_count = $('m_count').value; d.m_type = val('m_type'); d.m_support = val('m_support'); }
+    if (has2()) {
+      d.g_kind = val('g_kind'); d.g_model = txt('g_model'); d.g_qty = $('g_qty').value;
+      d.g_vidoc = d.g_kind === 'viDoc' ? val('g_vidoc') : ''; d.g_iphone = val('g_iphone'); d.g_rtk = val('g_rtk');
+      d.photos = photos.map(function (p) { return { name: p.name, data: p.dataUrl.split(',')[1] }; });
+    }
+    lastNo = d.no;
+    return d;
+  }
+
+  function summaryRows(d) {
+    var r = [['受付番号', d.no], ['キャンペーン', CAMP_LABEL[d.campaign]], ['ご依頼の内容', d.purpose.join('、')]];
+    if (d.m_count) r.push(['Matic Pro', d.m_count + '本（Mapper：' + d.m_type + (d.m_support ? '・保守' + d.m_support : '') + '）']);
+    if (d.g_kind) r.push(['下取り機器', d.g_kind + '／' + d.g_model + '／' + d.g_qty + '台' + (d.g_vidoc ? '／' + d.g_vidoc : '')]);
+    if (d.photos && d.photos.length) r.push(['写真', d.photos.length + '枚']);
+    if (d.quoteTotal) r.push(['参考見積（税込）', yen(d.quoteTotal) + '円']);
+    r.push(['会社名・団体名', d.company + (d.dept ? '　' + d.dept : '')], ['お名前', d.person], ['メール', d.email]);
+    if (d.tel) r.push(['電話', d.tel]);
+    return r;
+  }
+
+  function mailtoHref(d) {
+    var tag = d.campaign === '1' ? 'PIX4D年末CP1｜Matic Pro乗り換え' : d.campaign === '2' ? 'PIX4D年末CP2｜GNSS下取り' : d.campaign === 'both' ? 'PIX4D年末CP1+CP2' : 'PIX4D年末｜対象の確認';
+    var subject = '【' + tag + '】' + (d.purpose[0] || 'お問い合わせ') + '｜' + d.company + ' ' + d.person + '様（' + d.no + '）';
+    var L = ['SkyLink Japan 御中', '', 'PIX4D年末キャンペーンについて、下記の内容で問い合わせます。', ''];
+    summaryRows(d).forEach(function (r) { L.push('■' + r[0] + '：' + r[1]); });
+    if (d.g_kind) { L.push('■LiDAR搭載iPhone：' + (d.g_iphone || '—')); L.push('■RTK補正情報サービス：' + (d.g_rtk || '—')); }
+    L.push('■都道府県：' + (d.pref || '—'), '■ご希望の連絡方法：' + (d.contact || '—'), '■導入のご希望時期：' + (d.timing || '—'), '■ご質問・ご要望：', d.note || '—');
+    if (d.photos && d.photos.length) L.push('', '※機器の写真を添付します');
+    return 'mailto:' + MAIL_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(L.join('\r\n'));
+  }
+
+  /* ===== 見積書・ご検討資料 ===== */
+  function buildQuote(d) {
+    var c = calc();
+    if (!c.lines.length) return null;
+    var t = jst();
+    var validity = c.n1 && c.n2 ? VALID2 + '（キャンペーン1は' + VALID1 + '）' : c.n2 ? VALID2 : VALID1;
+    var subject = c.n1 && c.n2 ? 'PIX4D年末キャンペーン（Matic Pro乗り換え・GNSS受信機下取り）' : c.n1 ? 'PIX4D年末キャンペーン　PIX4Dmatic Pro 乗り換え' : 'PIX4D年末キャンペーン　Reach RX2 スキャンキット（下取り）';
+    return { no: d.no, dateText: t.y + '年' + t.m + '月' + t.d + '日', company: d.company, dept: d.dept, person: d.person,
+      subject: subject, validity: validity, c: c };
+  }
+  function addressee(q) {
+    return q.person
+      ? '<div class="s-to">' + esc(q.company) + '</div><div class="s-attn">' + esc((q.dept ? q.dept + '　' : '') + q.person) + ' 様</div>'
+      : '<div class="s-to">' + esc(q.company) + ' 御中</div>' + (q.dept ? '<div class="s-attn">' + esc(q.dept) + '</div>' : '');
+  }
+  function issuerBlock() {
+    return '<img class="s-logo" src="' + LOGO_BLACK + '" alt="SkyLink">' +
+      '<div class="s-co">' + ISSUER.company + '<br>' + ISSUER.brand + '<br>' + ISSUER.rep + '</div>' +
+      '<div class="s-addr">' + ISSUER.zip + '<br>' + ISSUER.addr + '</div>' +
+      '<div class="s-contact">TEL: ' + ISSUER.tel + '<br>FAX: ' + ISSUER.fax + '<br>' + ISSUER.mail + '<br>登録番号: ' + ISSUER.reg + '</div>';
+  }
+  function sheetQuote(q) {
+    var c = q.c;
+    var rows = c.lines.map(function (l) {
+      return '<tr><td>' + esc(l.name) + '</td><td class="r">' + l.qty + (l.cp === 1 ? ' 本' : ' 式') + '</td>' +
+        '<td class="r">' + yen(l.unit) + '</td><td class="r">' + yen(l.amount) + '</td></tr>';
+    });
+    while (rows.length < 8) rows.push('<tr><td></td><td></td><td></td><td></td></tr>');
+    var notes = ['・本見積書は、PIX4D年末キャンペーンのページで作成した参考見積書です（見積番号は受付番号と同じです）。対象条件を確認のうえ、担当より正式見積書をお送りします。'];
+    if (c.n1) notes.push('・Matic Proの特別価格：お持ちのPIX4Dmapper 1ライセンスにつき1ライセンスまで（買い切り・年額契約、保守切れも対象。Mapperの返却は不要）。毎年期限内に更新すると最大5年間この価格（年' + yen(P.maticOff) + '円／本）。更新が途切れると通常価格に戻ります。6年目以降は通常価格。');
+    if (c.n2) notes.push('・RX2スキャンキット：viDoc・他社製GNSS受信機（メーカー・型式不問、Emlid製品を除く）1台の下取りにつき1式。下取り機器はPix4Dへ送付（送料Pix4D負担・返却なし）。測量用途とは言えない状態の機器は対象外の場合があります。在庫限り。');
+    if (c.n2) notes.push('・スマートフォン（LiDAR搭載のiPhone推奨）・固定用ケース・RTK補正情報サービスは含みません。2年目以降はPIX4Dcatch Proの年間更新費用がかかります。');
+    return '<div class="s-top"><div>' + q.dateText + '</div><div>見積番号: ' + q.no + '</div></div>' +
+      '<div class="s-title">御見積書（参考）</div>' +
+      '<div class="s-head"><div class="s-left">' + addressee(q) +
+        '<div class="s-meta">件名 : ' + esc(q.subject) + '</div>' +
+        '<div class="s-meta">有効期限 : ' + esc(q.validity) + '</div>' +
+        '<p class="s-lead">下記のとおりお見積申し上げます。</p>' +
+        '<div class="s-amount"><span>お見積金額</span><span>¥ ' + yen(c.total) + ' -</span></div>' +
+      '</div><div class="s-right">' + issuerBlock() + '</div></div>' +
+      '<table class="s-table"><colgroup><col style="width:58%"><col style="width:11%"><col style="width:14.5%"><col style="width:16.5%"></colgroup>' +
+        '<thead><tr><th>品名</th><th>数量</th><th>単価</th><th>金額</th></tr></thead><tbody>' + rows.join('') +
+        '<tr class="sum"><td class="blank"></td><td colspan="2">小計</td><td class="r">' + yen(c.subtotal) + '</td></tr>' +
+        '<tr class="sum"><td class="blank"></td><td colspan="2">消費税 (10%)</td><td class="r">' + yen(c.tax) + '</td></tr>' +
+        '<tr class="sum"><td class="blank"></td><td colspan="2">合計</td><td class="r">' + yen(c.total) + '</td></tr>' +
+      '</tbody></table>' +
+      '<p class="s-foot">お振込の際の振込手数料はご負担ください。</p>' +
+      '<div class="s-notes"><p>【備考】</p>' + notes.map(function (n) { return '<p>' + esc(n) + '</p>'; }).join('') + '</div>';
+  }
+  function docHead(q, title) {
+    return '<div class="s-top"><div>' + q.dateText + '</div><div>見積番号: ' + q.no + '</div></div>' +
+      '<div class="d-title">' + title + '</div>' +
+      '<div class="d-sub">' + esc(q.company) + (q.dept ? '　' + esc(q.dept) : '') + '　御中　／　SkyLink Japan（株式会社WorldLink &amp; Company）</div>';
+  }
+  function docFoot(q) {
+    return '<div class="d-foot"><span>SkyLink Japan　TEL ' + ISSUER.tel + '　' + ISSUER.mail + '</span><span>価格はすべて税抜</span></div>';
+  }
+  function sheetDoc1(q) {
+    var n = q.c.n1, rows = '';
+    for (var y = 1; y <= 5; y++) {
+      rows += '<tr><td>' + y + '年目</td><td>' + yen(P.maticList * n) + '</td><td>' + yen(P.maticOff * n) + '</td><td>' + yen(P.maticList * n * y) + '</td><td>' + yen(P.maticOff * n * y) + '</td><td>' + yen((P.maticList - P.maticOff) * n * y) + '</td></tr>';
+    }
+    return docHead(q, 'ご検討資料　PIX4Dmapper から PIX4Dmatic Pro への乗り換え') +
+      '<div class="d-band c1">キャンペーン1｜Matic Pro ' + n + '本　5年間の支払い比較</div>' +
+      '<div class="d-key"><div><small>通常価格で5年間（' + n + '本）</small><b>' + yen(P.maticList * n * 5) + '円</b></div>' +
+      '<div><small>キャンペーン価格で5年間（' + n + '本）</small><b>' + yen(P.maticOff * n * 5) + '円</b></div>' +
+      '<div class="hot"><small>5年間の差額</small><b>' + yen((P.maticList - P.maticOff) * n * 5) + '円</b></div></div>' +
+      '<table class="d-table"><tr><th>年</th><th>通常価格（年額）</th><th>キャンペーン（年額）</th><th>通常価格（累計）</th><th>キャンペーン（累計）</th><th>差額（累計）</th></tr>' + rows + '</table>' +
+      '<div class="d-h">なぜ今なのか</div>' +
+      '<table class="d-time"><tr><td>2026年12月31日</td><td>キャンペーンの見積依頼期限</td></tr><tr><td>2027年1月1日</td><td>PIX4Dmapper 販売終了</td></tr>' +
+      '<tr><td>2027年12月1日</td><td>PIX4Dmapper 標準サポート・アップデート終了（以降、OSやPCの更新で動かなくなっても対応・保証なし）</td></tr></table>' +
+      '<div class="d-h">条件とポイント</div><ul class="d-list">' +
+      '<li>PIX4Dmatic Pro 1年ライセンスが通常 年850,000円 → 年425,000円（50%OFF）。毎年期限内に更新すれば最大5年間この価格</li>' +
+      '<li>お持ちのPIX4Dmapper 1ライセンスにつき、Matic Pro 1ライセンスまで。買い切り・年額契約のどちらも対象（保守切れも可）</li>' +
+      '<li>Mapperは返却不要。過去の案件はMapper、新しい案件はMaticと並行して使える</li>' +
+      '<li>Matic Proは写真測量（点群・オルソ・DSM・メッシュ）と図化・解析（DTM・等高線・TIN、CAD用の線抽出、表面比較）を1本で処理</li>' +
+      '<li>購入前に30日間の延長トライアルで、自社のデータで仕上がりを確認できる</li>' +
+      '<li>ご注意：特別価格は毎年の期限内更新が条件。1回でも途切れると以降は通常価格。6年目以降は通常価格（年850,000円）</li></ul>' + docFoot(q);
+  }
+  function sheetDoc2(q) {
+    var n = q.c.n2;
+    return docHead(q, 'ご検討資料　GNSS受信機の下取りで Reach RX2 キットを導入') +
+      '<div class="d-band c2">キャンペーン2｜RX2スキャンキット ' + n + '式　通常価格との比較</div>' +
+      '<div class="d-key"><div><small>通常価格（' + n + '式）</small><b>' + yen((P.kitList + P.catch1y) * n) + '円</b></div>' +
+      '<div><small>キャンペーン価格（' + n + '式）</small><b>' + yen(P.catch1y * n) + '円</b></div>' +
+      '<div class="hot"><small>下取りによる値引</small><b>' + yen(P.kitList * n) + '円</b></div></div>' +
+      '<table class="d-table"><tr><th>内訳（' + n + '式）</th><th>通常価格</th><th>キャンペーン</th></tr>' +
+      '<tr><td>機器セット（Reach RX2本体・PIX4Dcatch用ハンドル・専用キャリーケース）</td><td>' + yen(P.kitList * n) + '</td><td>0</td></tr>' +
+      '<tr><td>PIX4Dcatch Pro 1年ライセンス</td><td>' + yen(P.catch1y * n) + '</td><td>' + yen(P.catch1y * n) + '</td></tr>' +
+      '<tr class="tot"><td>合計</td><td>' + yen((P.kitList + P.catch1y) * n) + '</td><td>' + yen(P.catch1y * n) + '</td></tr></table>' +
+      '<div class="d-h">Reach RX2 でできること</div><ul class="d-list">' +
+      '<li>3Dスキャン：iPhone・iPadとPIX4Dcatchで、LiDARと写真から現場を3D化。RTKで正確な位置を付与（出来形・土量や埋設管の記録に）</li>' +
+      '<li>RTKローバー：測量ポールに付けて観測・杭打ちに。快測ナビなど主要アプリと連携。傾斜補正（最大60°）でポールの立て直し不要</li>' +
+      '<li>本体280g、約16時間の連続稼働、IP68の防塵防水。スキャンしたデータはMatic Proでドローンのデータと統合できる</li>' +
+      '<li>小規模土工などの出来形管理では、モバイル端末による3次元計測が国交省の要領に位置づけられている</li></ul>' +
+      '<div class="d-h">条件とご注意</div><ul class="d-list">' +
+      '<li>期限：2026年12月18日（金）まで。在庫がなくなり次第終了</li>' +
+      '<li>下取り：viDoc、または他社製GNSS受信機（メーカー・型式不問、Emlid製品を除く）1台につき1式。Pix4Dへ送付（送料Pix4D負担・返却なし）。測量用途とは言えない状態の機器は対象外の場合あり（写真で事前確認可）</li>' +
+      '<li>別途必要：スマートフォン（LiDAR搭載のiPhone推奨）と固定用ケース、RTK補正情報サービス（ネットワーク型）のご契約</li>' +
+      '<li>2年目以降はPIX4Dcatch Proの年間更新費用がかかる</li>' +
+      '<li>2024年9月より前にPix4DからviDocをご購入の方は、現在PIX4Dcatchのライセンス費用が免除されているため、乗り換えると費用が変わる（担当が比較してご案内）</li></ul>' + docFoot(q);
+  }
+  function showQuote() {
+    if (!lastQuote) return;
+    var pages = [sheetQuote(lastQuote)];
+    if (lastQuote.c.n1) pages.push(sheetDoc1(lastQuote));
+    if (lastQuote.c.n2) pages.push(sheetDoc2(lastQuote));
+    $('sheets').innerHTML = pages.map(function (h) { return '<div class="sheet-wrap"><div class="sheet">' + h + '</div></div>'; }).join('');
+    document.body.classList.add('quote-mode');
+    document.title = '見積書_' + lastQuote.no + '_' + lastQuote.company;
+    window.scrollTo(0, 0);
+    fitSheets();
+  }
+  function fitSheets() {
+    Array.prototype.forEach.call(document.querySelectorAll('.sheet-wrap'), function (w) {
+      var sh = w.firstChild, W = sh.offsetWidth, H = sh.offsetHeight;
+      var s = Math.min(1, (window.innerWidth - 24) / W);
+      sh.style.transform = s < 1 ? 'scale(' + s + ')' : '';
+      w.style.width = Math.floor(W * s) + 'px'; w.style.height = Math.floor(H * s) + 'px';
+    });
+  }
+  $('backBtn').addEventListener('click', function () { document.body.classList.remove('quote-mode'); document.title = baseTitle; $('form').scrollIntoView(); });
+  $('printBtn').addEventListener('click', function () { window.print(); });
+  window.addEventListener('resize', function () { if (document.body.classList.contains('quote-mode')) fitSheets(); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-show-quote]'), function (b) { b.addEventListener('click', showQuote); });
+
+  function show(id) {
+    $('ok').classList.toggle('on', id === 'ok'); $('ng').classList.toggle('on', id === 'ng');
+    f.classList.toggle('hidden', id === 'ok');
+    $('okQuote').classList.toggle('hidden', !lastQuote);
+    $('ngQuote').classList.toggle('hidden', !lastQuote);
+    $(id).scrollIntoView({ block: 'start' });
+  }
+
+  function send() {
+    $('sumBad').classList.remove('on');
+    if (!check()) { $('sumBad').classList.add('on'); var b = f.querySelector('.bad'); if (b) b.scrollIntoView({ block: 'center' }); return; }
+    var d = collect();
+    lastQuote = buildQuote(d);
+    var btn = $('sendBtn'), label = btn.innerHTML; btn.disabled = true; btn.textContent = '送信しています…';
+    var done = function (ok) {
+      btn.disabled = false; btn.innerHTML = label;
+      if (ok) {
+        $('okNo').textContent = d.no;
+        $('okSum').innerHTML = summaryRows(d).map(function (r) { return '<dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('');
+        show('ok');
+        $('qvStatus').innerHTML = '&#10003; 送信しました（受付番号 <b>' + esc(d.no) + '</b>）。対象条件を確認のうえ、担当より正式見積をお送りします。';
+        $('qvStatus').classList.remove('hidden');
+        if (lastQuote) showQuote();
+      } else {
+        $('ngMail').setAttribute('href', mailtoHref(d));
+        $('qvStatus').classList.add('hidden');
+        show('ng');
+      }
+    };
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctl) ctl.abort(); }, 30000);
+    // text/plain で送ると事前確認（プリフライト）なしで届き、Apps Scriptの返事も読めます
+    fetch(NOTIFY_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d), redirect: 'follow', signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { clearTimeout(timer); done(!!(j && j.ok)); })
+      .catch(function () { clearTimeout(timer); done(false); });
+  }
+
+  f.addEventListener('submit', function (e) { e.preventDefault(); send(); });
+  $('ngRetry').addEventListener('click', function () { $('ng').classList.remove('on'); send(); });
+  // エラー表示は入力中に消す（送信ボタンを押した瞬間にレイアウトがずれて、押し損じるのを防ぐ）
+  function recheck() { if (f.querySelector('.fld.bad')) { if (check()) $('sumBad').classList.remove('on'); } }
+  f.addEventListener('input', recheck);
+  f.addEventListener('change', recheck);
+})();
+</script>
+</body>
+</html>
