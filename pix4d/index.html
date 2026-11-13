@@ -88,6 +88,18 @@ section{padding:44px 0}
 .hero .diff b{font-family:var(--en);font-size:41.5px;color:var(--deal)}
 .hero .diff small{display:block;font-size:14.5px;font-weight:400;color:#8fa3bc}
 .hero .lead{margin:14px 0 0;font-size:18px;color:#d5deea;max-width:620px}
+/* Mapperの販売終了・サポート終了（ヒーロー内のお知らせ。クリックできる要素と見分けがつくよう、ボタン色は使わない） */
+.hero-eol{margin-top:18px;max-width:620px;background:#3a1a2e;border-left:5px solid #ff5a6e;padding:12px 16px 14px}
+.hero-eol .t{font-size:19.5px;font-weight:700;color:#fff;line-height:1.5}
+.hero-eol .t .ic{color:#ff8a9a;margin-right:4px}
+.hero-eol .tl{display:flex;gap:10px;margin-top:10px}
+.hero-eol .tl div{flex:1 1 0;background:var(--ink);padding:8px 12px;line-height:1.35}
+.hero-eol .tl b{display:block;font-size:23px;font-weight:900;color:#ff8a9a;letter-spacing:.02em}
+.hero-eol .tl span{display:block;font-size:17px;font-weight:700;color:#fff;margin-top:2px}
+.hero-eol .tl .arw{flex:none;align-self:center;background:none;padding:0;color:#ff8a9a;font-size:20px}
+.hero-eol small{display:block;margin-top:10px;font-size:15.5px;color:#d5deea;line-height:1.6;text-wrap:pretty}
+@media(max-width:640px){.hero-eol{padding:12px 12px 14px}.hero-eol .t{font-size:18px}.hero-eol .tl{flex-direction:column;gap:6px}.hero-eol .tl div{display:flex;align-items:baseline;gap:10px;padding:8px 10px}.hero-eol .tl b{font-size:18px;white-space:nowrap}.hero-eol .tl span{font-size:15.5px;margin-top:0}.hero-eol .tl .arw{display:none}}
+@media(max-width:380px){.hero-eol .tl div{gap:8px;padding:8px}.hero-eol .tl b{font-size:16.5px}.hero-eol .tl span{font-size:14.5px;white-space:nowrap}}
 .dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .dl span{font-size:17px;padding:6px 12px;background:#13294a;border:1px solid #24406a}
 .dl b{font-weight:700;margin-left:6px}
@@ -356,6 +368,15 @@ body.quote-mode #quoteView{display:block}
     <div class="who">PIX4D製品をお使いの皆さまへ／年内限定のご案内</div>
     <h1>入れ替えるなら、<br>今がいちばん安い。</h1>
     <p class="diff"><span class="ph">通常価格より、</span><span class="ph">最大 <b>212万円</b> おトク！</span><small>Matic Pro 1本を5年間、期限内に更新した場合の通常価格との差</small></p>
+    <div class="hero-eol" role="note">
+      <div class="t"><span class="ic">&#9888;</span><span class="ph">PIX4Dmapperは、</span><span class="ph">販売もサポートも終了します</span></div>
+      <div class="tl">
+        <div><b>2027年1月1日</b><span>販売終了</span></div>
+        <div class="arw" aria-hidden="true">&#9654;</div>
+        <div><b>2027年12月1日</b><span>サポート・更新終了</span></div>
+      </div>
+      <small>サポート終了後は、OSやPCの更新で動かなくなっても対応・保証なし。</small>
+    </div>
     <p class="lead">対象の方は、このページで<strong>参考見積書（PDF）をその場で作成</strong>できます。5年間の支払い比較をまとめた「ご検討資料」も付くので、社内のご検討にそのままお使いいただけます。</p>
     <div class="dl">
       <span class="c1">キャンペーン1<b class="ph">12月31日（木）までの見積依頼</b></span>
