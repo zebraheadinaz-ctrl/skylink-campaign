@@ -62,7 +62,17 @@ section{padding:44px 0}
 @media(max-width:700px){.hdr-l img.badge,.hdr-nav,.hdr-tel small{display:none}.hdr-tel{font-size:16px}}
 
 /* hero */
-.hero{background:var(--ink);color:#fff;padding:40px 0 38px}
+.hero{background:var(--ink);color:#fff;padding:40px 0 38px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:28px;align-items:center;max-width:1120px}
+.hero-txt{position:relative;z-index:1}
+.hero-img{margin:0;position:relative}
+.hero-img img{width:100%;height:auto;display:block;-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 58%,transparent 100%)}
+.hero-img figcaption{position:absolute;right:8%;bottom:6%;font-size:11px;color:#8fa3bc}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-img{position:absolute;z-index:0;top:-10px;right:-38%;width:110%;opacity:.32;pointer-events:none}
+  .hero-img figcaption{display:none}
+}
 .kicker{font-family:var(--en);font-size:11px;letter-spacing:.35em;font-weight:700;color:#6fb1ec}
 .brand{display:flex;align-items:center;gap:14px}
 .brand img{width:73px;height:52px;border-radius:5px}
@@ -111,6 +121,10 @@ section{padding:44px 0}
 .card.c1 .due{background:var(--lb)}.card.c2 .due{background:var(--lt)}
 .card-b .pick{margin-top:12px;width:100%;font-size:15px;padding:13px 14px}
 .card.closed{opacity:.55}.card.closed .pick{display:none}
+.card-img{margin:0;position:relative;background:#0b1f3a;aspect-ratio:16/8;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.c2img{background:#000}.c2img img{object-fit:contain}
+.card-img figcaption{position:absolute;left:10px;bottom:8px;font-size:11px;color:#fff;background:rgba(11,31,58,.72);padding:2px 8px;border-radius:3px}
 .cards-note{font-size:12px;color:var(--sub);margin:10px 0 0}
 @media(max-width:700px){.cards{grid-template-columns:1fr}}
 
@@ -227,6 +241,14 @@ input:focus,select:focus,textarea:focus{outline:3px solid #9cc3ea;outline-offset
 .faq .tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:2px;margin-left:6px;vertical-align:2px;font-weight:700}
 .faq .tag.t1{background:var(--lb);color:var(--blue)}.faq .tag.t2{background:var(--lt);color:var(--teal)}
 
+/* sticky cta (mobile) */
+.sticky-cta{display:none}
+@media(max-width:700px){
+  .sticky-cta{display:block;position:fixed;left:12px;right:12px;bottom:12px;z-index:40;text-align:center;background:var(--cta);color:var(--cta-ink);font-weight:700;font-size:16px;padding:14px 10px;border-radius:30px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .25s,opacity .25s}
+  .sticky-cta.off{transform:translateY(120%);opacity:0;pointer-events:none}
+  body{padding-bottom:76px}
+  body.quote-mode .sticky-cta{display:none}
+}
 /* footer */
 .ftr{background:var(--ink);color:#b9c6d5;font-size:12px;padding:26px 0;line-height:1.9}
 .ftr b{color:#fff}
@@ -322,7 +344,8 @@ body.quote-mode #quoteView{display:block}
 </header>
 
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero-grid">
+   <div class="hero-txt">
     <div class="brand"><img src="../assets/out/pix4d-logo-chip.png" alt="PIX4D" width="73" height="52"><div><b>年末キャンペーン 2026</b><span>PIX4D PREMIER RESELLER</span></div></div>
     <div class="who">PIX4D製品をお使いの皆さまへ／年内限定のご案内</div>
     <h1>入れ替えるなら、<br>今がいちばん安い。</h1>
@@ -336,6 +359,11 @@ body.quote-mode #quoteView{display:block}
       <a class="btn" href="#form">1分で見積書を作成する&nbsp;&rarr;</a>
       <a class="btn btn-dark" href="#compare">5年間の支払い比較を見る</a>
     </div>
+   </div>
+   <figure class="hero-img">
+     <img src="https://skylinkjapan.com/mgmt/wp-content/uploads/2026/08/pix4dmatic-output-point-cloud-1024x683.jpg" srcset="https://skylinkjapan.com/mgmt/wp-content/uploads/2026/08/pix4dmatic-output-point-cloud-1024x683.jpg 1024w, https://skylinkjapan.com/mgmt/wp-content/uploads/2026/08/pix4dmatic-output-point-cloud.jpg 1536w" sizes="(max-width:900px) 100vw, 46vw" width="1536" height="1024" alt="PIX4Dmaticで作成した点群のイメージ" fetchpriority="high">
+     <figcaption>PIX4Dmatic Pro で作成した点群のイメージ</figcaption>
+   </figure>
   </div>
 </section>
 
@@ -346,6 +374,7 @@ body.quote-mode #quoteView{display:block}
     <div class="cards">
       <div class="card c1" id="card1">
         <div class="card-h"><span class="n">1</span>PIX4Dmapper をお持ちの方</div>
+        <figure class="card-img c1img"><img src="https://skylinkjapan.com/mgmt/wp-content/uploads/2026/08/pix4dmatic-output-3d-mesh-768x512.jpg" width="768" height="512" alt="PIX4Dmaticで作成した3Dメッシュのイメージ" loading="lazy"><figcaption>PIX4Dmatic Pro の3Dメッシュ</figcaption></figure>
         <div class="card-b">
           <div class="what">Matic Proへの乗り換えが<span class="hl">半額！</span></div>
           <div class="was">PIX4Dmatic Pro 1年ライセンス　通常 <s>850,000円</s></div>
@@ -364,6 +393,7 @@ body.quote-mode #quoteView{display:block}
       </div>
       <div class="card c2" id="card2">
         <div class="card-h"><span class="n">2</span>viDoc・GNSS受信機をお持ちの方</div>
+        <figure class="card-img c2img"><img src="https://skylinkjapan.com/mgmt/wp-content/uploads/2026/07/hero-rx-pix4dcatch-768x512.png" width="768" height="512" alt="Emlid Reach RX2とPIX4Dcatchのスマートフォン" loading="lazy"><figcaption>Reach RX2 ＋ PIX4Dcatch</figcaption></figure>
         <div class="card-b">
           <div class="what">下取りで機器セットが<span class="hl">0円！</span></div>
           <div class="was">Reach RX2 スキャンキット＋PIX4Dcatch Pro 1年　通常 <s>870,000円</s></div>
@@ -677,6 +707,8 @@ body.quote-mode #quoteView{display:block}
   </div>
 </footer>
 </div><!-- /#site -->
+
+<a class="sticky-cta" id="stickyCta" href="#form">1分で見積書を作成する&nbsp;&#9654;</a>
 
 <div id="quoteView">
   <div class="qv-bar">
@@ -1082,6 +1114,16 @@ body.quote-mode #quoteView{display:block}
   }
 
   f.addEventListener('submit', function (e) { e.preventDefault(); send(); });
+  // スマホの追従ボタン：ヒーローのボタンが見えている間と、フォームが見えている間は隠す
+  (function () {
+    var sc = $('stickyCta'); if (!sc || !('IntersectionObserver' in window)) return;
+    var seen = { hero: true, form: false };
+    var upd = function () { sc.classList.toggle('off', seen.hero || seen.form); };
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { seen[e.target.id === 'form' ? 'form' : 'hero'] = e.isIntersecting; }); upd();
+    }, { threshold: 0.05 });
+    io.observe(document.querySelector('.hero .acts')); io.observe($('form')); upd();
+  })();
   $('ngRetry').addEventListener('click', function () { $('ng').classList.remove('on'); send(); });
   // エラー表示は入力中に消す（送信ボタンを押した瞬間にレイアウトがずれて、押し損じるのを防ぐ）
   function recheck() { if (f.querySelector('.fld.bad')) { if (check()) $('sumBad').classList.remove('on'); } }
