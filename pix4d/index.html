@@ -348,6 +348,14 @@ body.quote-mode #quoteView{display:block}
 .hero-eol .tl span{font-size:16px;margin-top:0;}
 @media(max-width:640px){.hero-eol .tl b{font-size:18px;}.hero-eol .tl span{font-size:15.5px;}}
 @media(max-width:380px){.hero-eol .tl b{font-size:16.5px;}.hero-eol .tl span{font-size:14.5px;}}
+/* SkyLink Japan公式サイトへの導線 */
+.hdr-home{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;min-height:44px;color:var(--navy);text-decoration:none;}
+.hdr-home-label{font-family:var(--jp);font-size:11px;font-weight:700;line-height:1.2;white-space:nowrap;}
+.hdr-home:hover .hdr-home-label{text-decoration:underline;}
+.ftr a.ftr-home{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;margin-bottom:16px;padding:9px 16px;border:1px solid #9fc6ec;border-radius:4px;color:#fff;font-size:17px;font-weight:700;line-height:1.5;text-decoration:none;}
+.ftr-home:hover{background:rgba(255,255,255,.09);}
+.hdr-home:focus-visible,.ftr-home:focus-visible{outline:3px solid var(--blue2);outline-offset:3px;}
+@media(max-width:380px){.ftr a.ftr-home{font-size:15.5px;padding:9px 12px;}}
 </style>
 </head>
 <body>
@@ -356,7 +364,7 @@ body.quote-mode #quoteView{display:block}
 <header class="hdr">
   <div class="wrap">
     <div class="hdr-l">
-      <img class="logo" src="../assets/out/skylink-logo-blue.png" alt="SkyLink Japan" width="75" height="34">
+      <a class="hdr-home" href="https://skylinkjapan.com/" target="_blank" rel="noopener noreferrer" aria-label="SkyLink Japan公式サイトへ（新しいタブで開きます）"><img class="logo" src="../assets/out/skylink-logo-blue.png" alt="SkyLink Japan" width="75" height="34"><span class="hdr-home-label">公式サイトへ <span aria-hidden="true">↗</span></span></a>
       <img class="badge" src="../assets/out/pix4d-premier-reseller.png" alt="PIX4D Premier Reseller" width="86" height="30">
     </div>
     <div class="hdr-r">
@@ -742,6 +750,7 @@ body.quote-mode #quoteView{display:block}
 
 <footer class="ftr">
   <div class="wrap">
+    <div><a class="ftr-home" href="https://skylinkjapan.com/" target="_blank" rel="noopener noreferrer" aria-label="SkyLink Japan公式サイトへ戻る（新しいタブで開きます）">SkyLink Japan公式サイトへ戻る <span aria-hidden="true">↗</span></a></div>
     <b>SkyLink Japan</b>（運営会社：株式会社WorldLink &amp; Company）<br>
     〒603-8053 京都府京都市北区上賀茂岩ケ垣内町98-2-2F　TEL：075-708-2369（平日 9:00〜17:00）<br>
     お問い合わせ：<a href="mailto:info@skylinkjapan.com">info@skylinkjapan.com</a>　｜　価格はすべて税抜です。
